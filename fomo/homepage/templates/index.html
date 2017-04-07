@@ -1,64 +1,31 @@
 <%inherit file="app_base.htm" />
-<!--
-base blocks
-    title
-    header
-    message
-    menu_items
-    body_main
-    body_above
-    body_left
-    body_center
-    body_right
-app_base blocks
-    more_menu_items
--->
 
+<%block name="page_title">FOMO Home Page</%block>
+<%block name="title">Home</%block>
 
+<%block name="body_above">
+    <!-- <ol class="breadcrumb" style="margin-bottom:0px;">
+      <li class="breadcrumb-item active">Home</li>
+    </ol> -->
+    <div class="img-wrapper">
+        <div class="cover" title="Family Oriented Music Organization">
+        </div>
+        <div class="img-overlay">
+            <a href="/catalog/shop" class="btn btn-md btn-default">Shop Now</a>
+            <img class="img-responsive" src="${ STATIC_URL }homepage/media/FOMOLogo-02.png" alt="Family Oriented Music Organization">
+        </div>
+    </div>
+
+</%block>
+
+<%block name="body_left">
+
+</%block>
 
 <%block name="body_center">
-<div class="row">
-    <div id="home-jumbo" class="jumbotron">
-        <h1 class="text-center">Family Oriented Music Organization</h1>
-        <h2 class="text-center">From our family to yours</h2>
-        <div class="text-center"><!--<button type="button" class="btn btn-default">--><a class="btn btn-default" href="/catalog/">Rent Now!</a></button></div>
-    </div>
-</div>
-<!-- <div class="container-fluid"> -->
-<div class="row">
-    <div class="col-md-6">
-        <div class="row">
-            <h3>New: Rent-To-Own</h3>
-            <p> <strong>0% Interest* </strong> <br>
-                No interest*, with payments as low as $19 per month. <br>
-                <strong>No Rental Fees</strong> <br>
-                Utah's only rental program completely free of rental fees & service charges</p>
-        </div>
-        <div class="row">
-            <img id="music_lessons"src="${ STATIC_URL }homepage/media/music-lessons.png" alt="Music Lessons">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <iframe id="video" width="590" height="315" src="https://www.youtube.com/embed/FRPDtXVblwI" frameborder="0" allowfullscreen></iframe>
 
-    </div>
+</%block>
 
-</div>
-<div class="row">
-    <div class="col-md-7">
-        <img id="music_park"src="${ STATIC_URL }homepage/media/music_park.png" alt="Music in the Park">
-    </div>
-    <div class="col-md-5">
-        <div class="row">
-            <h3>Music in the Park</h3>
-            <p>Every Saturday at 4:00 PM, FOMO sponsors 'Music in the Park' at Nielsen's Grove Park in Orem, Utah.
-                Musicians of all genres come each week to share music with us. We want you to come and enjoy the afternoon with us!</p>
-        </div>
-        <div class="row">
-            <iframe src="https://calendar.google.com/calendar/embed?src=8d1vssit41eq0mat064j6c1bc8%40group.calendar.google.com&ctz=America/Denver" style="border: 0" width="400" height="300" frameborder="0" scrolling="no"></iframe>
-        </div>
-    </div>
-</div>
-<!-- </div> -->
+<%block name="body_right">
 
 </%block>
