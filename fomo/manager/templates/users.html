@@ -1,0 +1,84 @@
+<%! from catalog import models as cmod %>
+<%inherit file="app_base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+
+-->
+
+<%block name="title">
+    Users
+</%block>
+
+<%block name="body_center">
+    <h3> Users List </h3>
+    <p> Below is a table of the current users</p>
+    <table class="table table-striped">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        % for u in users:
+            <tr>
+                <td>${u.first_name}</td>
+                <td>${u.last_name}</td>
+                <td>${u.username}</td>
+
+                <td>${u.email}</td>
+                <td>
+                    % if request.user.has_perm('account.change_fomouser'):
+                        <a href='/manager/manageuser/${u.id}'>Edit</a>
+                        |
+                        <a href='/manager/changeuserpassword/${u.username}'>Change Password</a>
+                    % endif
+                    % if request.user.has_perm('account.delete_fomouser'):
+                        |
+                        <a class='delete_link'  href='/manager/manageuser.delete/${u.id}'>Delete</a>
+                    % endif
+                </td>
+            </tr>
+
+        % endfor
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="DeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Confirm</h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this user?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <a id='finalize_delete' href='' class="btn btn-danger">Yes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="text-center">
+        <a class="btn btn-default" href="/manager/createuser">Create User</a>
+    </div>
+    <br>
+    <p>Our support teams and account management teams provide the best service in the industry. We're passionate about our
+        products as well as our employees and it shows in the level of service that we provide. We're always happy to help
+        find the solution for your needs. If you are in need of support, reach out to our support team (@fomo_support) on
+        the company Slack channel.</p>
+</%block>

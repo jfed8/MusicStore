@@ -1,0 +1,74 @@
+<%inherit file="app_base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+    more_menu_items
+-->
+
+<%block name="title">
+    Cart
+</%block>
+
+<%block name="body_center">
+    <h3> Cart Items </h3>
+    <p> Below is a table of the current items in your cart</p>
+    <a href="/checkout/cart.emptyCart">Empty Cart</a>
+    <table class="table table-striped">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        % for item in request.user.retrieveCart():
+            <tr>
+                <td><img class='graphic' src="${STATIC_URL}catalog/media/prod_imgs/${item.product.graphic}" alt=""></td>
+                <td><a href="/catalog/detail/${ item.product.id }">${item.product.name}</a></td>
+                <td>${item.product.category.name}</td>
+                <td>${item.quantity}</td>
+                <td>${item.ext_price}</td>
+                <td><a class='remove_link'  href='/checkout/cart.removeItem/${item.id}'>Remove</a></td>
+            </tr>
+        % endfor
+
+    </table>
+    <div id="cart-summary">
+        <table class="table table-striped">
+            <tr>
+                <td>Subtotal: </td>
+                <td>${request.user.cartSubtotal()}</td>
+            </tr>
+            <tr>
+                <td>Tax:  </td>
+                <td>${request.user.cartTax()}</td>
+            </tr>
+            <tr>
+                <td>Shipping: </td>
+                <td>${request.user.cartShipping()}</td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td>${request.user.cartTotal()}</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="text-center">
+        <a href="/checkout/shipping" class="btn btn-default">Checkout</a>
+    </div>
+    <br>
+    <p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
+    as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
+    your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+    </%block>

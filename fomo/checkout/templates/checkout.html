@@ -1,0 +1,109 @@
+<%inherit file="app_base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+    more_menu_items
+-->
+
+<%block name="title">
+    Checkout
+</%block>
+
+<%block name="body_center">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <h3> Order Confirmation</h3>
+    <p>Please confirm your order details before processing.</p>
+
+    <table class="table table-striped">
+        <caption>Order Items</caption>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        % for item in usercart:
+            <tr>
+                <td><img class='graphic' src="${STATIC_URL}catalog/media/prod_imgs/${item.product.graphic}" alt=""></td>
+                <td>${item.product.name}</td>
+                <td>${item.product.category.name}</td>
+                <td>${item.quantity}</td>
+                <td>${item.ext_price}</td>
+            </tr>
+        % endfor
+    </table>
+
+    <div id="cart-summary">
+        <table class="table table-striped">
+            <caption>Order Summary</caption>
+            <tr>
+                <td>Subtotal: </td>
+                <td>${cart_subtotal}</td>
+            </tr>
+            <tr>
+                <td>Tax:  </td>
+                <td>${cart_tax}</td>
+            </tr>
+            <tr>
+                <td>Shipping: </td>
+                <td>${cart_shipping}</td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td id="cart_total" temp='${cart_total}'>${cart_total}</td>
+            </tr>
+        </table>
+
+
+    </div>
+    
+    <div id='table_ship_address'>
+        <table class="table table-striped">
+            <caption>Shipping Address </caption>
+            <tr>
+                <td>Full name: </td>
+                <td>${ship_address.fullname}</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>${ship_address.address}</td>
+            </tr>
+            <tr>
+                <td>City: </td>
+                <td>${ship_address.city}</td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td>${ship_address.state}</td>
+            </tr>
+            <tr>
+                <td>Zipcode:</td>
+                <td>${ship_address.zipcode}</td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>${ship_address.phone}</td>
+            </tr>
+        </table>
+        <a href="/checkout/shipping_edit/${ship_address.id}"class="btn btn-default">Edit</a>
+
+    </div>
+
+    ${form}
+
+    <br>
+
+    <p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
+    as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
+    your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+    </%block>

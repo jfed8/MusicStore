@@ -1,0 +1,124 @@
+<%inherit file="app_base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+    more_menu_items
+-->
+
+<%block name="title">
+    Receipt
+</%block>
+
+<%block name="body_center">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <h3> Order Receipt</h3>
+    <p>Thank you for your order! Your order details and receipt are listed below.</p>
+
+    <table class="table table-striped">
+        <caption>Order</caption>
+        <tr>
+            <th>Order ID</th>
+            <th>Date Stamp</th>
+            <th>Subtotal</th>
+            <th>Tax</th>
+            <th>Shipping</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td>${sale.id}</td>
+            <td>${sale.date_stamp}</td>
+            <td>${sale.subtotal}</td>
+            <td>${sale.tax}</td>
+            <td>${sale.shipping}</td>
+            <td>${sale.total}</td>
+        </tr>
+    </table>
+    <table class="table table-striped">
+        <caption>Order Items</caption>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        % for item in saleitems:
+            <tr>
+                <td><img class='graphic' src="${STATIC_URL}catalog/media/prod_imgs/${item.product.graphic}" alt=""></td>
+                <td>${item.product.name}</td>
+                <td>${item.product.category.name}</td>
+                <td>${item.quantity}</td>
+                <td>${item.sale_price}</td>
+            </tr>
+        % endfor
+    </table>
+
+    <table class="table table-striped">
+        <caption>Payment</caption>
+        <tr>
+            <th>Method</th>
+            <th>Card Brand</th>
+            <th>Card Expiration</th>
+            <th>Amount Payed</th>
+            <th>Amount Refunded</th>
+            <th>Currency</th>
+        </tr>
+        <tr>
+            <td>${payment.method}</td>
+            <td>${payment.card_brand}</td>
+            <td>${payment.card_expiration}</td>
+            <td>${payment.amount}</td>
+            <td>${payment.amount_refunded}</td>
+            <td>${payment.currency}</td>
+        </tr>
+    </table>
+
+
+    <div id='table_ship_address'>
+        <table class="table table-striped">
+            <caption>Shipping Address</caption>
+            <tr>
+                <td>Full name: </td>
+                <td>${shippingaddress.fullname}</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>${shippingaddress.address}</td>
+            </tr>
+            <tr>
+                <td>City: </td>
+                <td>${shippingaddress.city}</td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td>${shippingaddress.state}</td>
+            </tr>
+            <tr>
+                <td>Zipcode:</td>
+                <td>${shippingaddress.zipcode}</td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>${shippingaddress.phone}</td>
+            </tr>
+        </table>
+
+    </div>
+
+
+
+    <br>
+
+    <p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
+    as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
+    your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+    </%block>

@@ -1,0 +1,45 @@
+<%inherit file="app_base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+    more_menu_items
+-->
+
+<%block name="title">
+    Search Results
+</%block>
+
+<%block name="body_center">
+<table class="table table-striped">
+    <caption class="text-center"><strong>Search Results</strong></caption>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    % for p in products:
+        <tr class="clickable-row" data-href='/catalog/detail/${p.id}'>
+                <td><img class='graphic' src="${STATIC_URL}catalog/media/prod_imgs/${p.graphic}" alt=""></td>
+                <td>${p.name}</td>
+                <td>${p.category.name}</td>
+                <td>${p.price}</td>
+                <td><a href="/catalog/detail/${ p.id }"class="btn btn-primary">View</a></td>
+        </tr>
+
+    % endfor
+</table>
+<p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
+as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
+your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+</%block>

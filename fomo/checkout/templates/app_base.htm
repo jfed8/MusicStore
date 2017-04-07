@@ -1,0 +1,30 @@
+<%inherit file="/homepage/templates/base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+    more_menu_items
+-->
+
+<%block name="menu_items">
+    <li ><a href="/">Home<span class="sr-only">(current)</span></a></li>
+    <li ><a href="/catalog/">Catalog</a></li>
+    <li ><a href="/homepage/terms">Terms</a></li>
+    <li ><a href="/homepage/faq">FAQ</a></li>
+    <li ><a href="/homepage/about">About</a></li>
+    <li ><a href="/homepage/contact">Contact</a></li>
+    % if request.user.has_perm('account.manager_menu'):
+        <li ><a href="/manager/products">Manager Portal</a></li>
+    % endif
+
+    <%block name="more_menu_items">
+    </%block>
+</%block>

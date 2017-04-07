@@ -1,0 +1,57 @@
+<%inherit file="app_base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+
+-->
+<%block name="title">
+    Catalog
+</%block>
+
+<%block name="body_left">
+    <ul class="nav nav-stacked panel">
+        <li class="panel-title text-center">Filter by Category:</li>
+        % for c in categories:
+        <li><a href="/catalog/index.filter/${c.id}"> ${ c.name } </a></li>
+        % endfor
+        <li><a href="/catalog/"> Clear Filter </a></li>
+    </ul>
+
+</%block>
+
+<%block name="body_center">
+    <div class="body-outer">
+        <div class="tile-outer">
+        % for p in products:
+            <a href="/catalog/detail/${ p.id }">
+                <div class="tile-container">
+
+                    <div class="tile-image">
+                        <img src="${STATIC_URL}catalog/media/prod_imgs/${p.graphic}" alt="">
+
+                    </div>
+                    <div class="tile-title">
+                        ${ p.name }
+
+                    </div>
+                </div>
+            </a>
+        %endfor
+        </div>
+    </div>
+
+    <br/>
+    <p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
+    as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
+    your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+
+</%block>

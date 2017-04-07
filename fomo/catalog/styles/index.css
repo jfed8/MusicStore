@@ -1,0 +1,27 @@
+.body-outer {
+    text-align: center;
+}
+
+.tile-outer {
+    text-align: center;
+    display: inline-block;
+
+}
+
+.tile-container {
+    display: inline-block;
+    text-align: center;
+    padding: 12px;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+.tile-image >img {
+    width: 150px;
+    padding: 6px;
+}
+
+.tile-title {
+    margin-top: 12px;
+    font-size: 1.4em;
+}
