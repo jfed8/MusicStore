@@ -1,0 +1,9 @@
+*.log
+*.pyc
+.DS_Store
+.cached_templates/
+__pycache__/
+.sass-cache/
+migrations/
+
+settings.py
