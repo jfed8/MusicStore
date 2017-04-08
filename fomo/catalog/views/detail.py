@@ -54,7 +54,9 @@ class PurchaseForm(FormMixIn, forms.Form):
     def init(self, product):
         #Initialize form values
         self.product=product
-        if hasattr(product, 'quantity'):
+        quantity = getattr(product, 'quantity', None)
+
+        if quantity is not None:
             self.fields['quantity'] = forms.IntegerField(label='Quantity')
 
     def clean_quantity(self):
