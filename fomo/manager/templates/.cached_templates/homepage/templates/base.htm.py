@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491596263.118625
+_modified_time = 1491843186.588236
 _enable_loop = True
 _template_filename = '/Users/JessClapier/IntexFOMO/fomo/homepage/templates/base.htm'
 _template_uri = '/homepage/templates/base.htm'
@@ -22,31 +22,31 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def menu_items():
-            return render_menu_items(context._locals(__M_locals))
-        def body_center():
-            return render_body_center(context._locals(__M_locals))
-        def body_left():
-            return render_body_left(context._locals(__M_locals))
-        def body_above():
-            return render_body_above(context._locals(__M_locals))
-        def message():
-            return render_message(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
-        def header():
-            return render_header(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
-        def body_main():
-            return render_body_main(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def title():
             return render_title(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
+        def menu_items():
+            return render_menu_items(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
+        def body_above():
+            return render_body_above(context._locals(__M_locals))
         def body_right():
             return render_body_right(context._locals(__M_locals))
+        def body_left():
+            return render_body_left(context._locals(__M_locals))
+        def body_center():
+            return render_body_center(context._locals(__M_locals))
+        def body_main():
+            return render_body_main(context._locals(__M_locals))
+        def message():
+            return render_message(context._locals(__M_locals))
+        def header():
+            return render_header(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\n-->\n\n<!DOCTYPE html>\n<html>\n  <meta charset="UTF-8">\n  <head>\n\n')
-        __M_writer('    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>\n    <script src="')
+        __M_writer('    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>\n    <script src="')
         __M_writer(str( STATIC_URL ))
         __M_writer('homepage/media/jquery.datetimepicker.full.js"></script>\n    <script src="')
         __M_writer(str( STATIC_URL ))
@@ -87,7 +87,7 @@ def render_body(context,**pageargs):
                     
         
         __M_locals_builtin_stored = __M_locals_builtin()
-        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['date','datetime','now'] if __M_key in __M_locals_builtin_stored]))
+        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['date','now','datetime'] if __M_key in __M_locals_builtin_stored]))
         __M_writer('\n            <p class="text-muted"> &copy; ')
         __M_writer(str( now.year ))
         __M_writer('. All rights reserved. </p>\n      </div>\n</footer>\n\n\n')
@@ -114,11 +114,11 @@ def render_title(context,**pageargs):
 def render_header(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        request = context.get('request', UNDEFINED)
         def menu_items():
             return render_menu_items(context)
         def message():
             return render_message(context)
-        request = context.get('request', UNDEFINED)
         def header():
             return render_header(context)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
@@ -181,18 +181,18 @@ def render_menu_items(context,**pageargs):
 def render_body_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def body_center():
-            return render_body_center(context)
-        def body_left():
-            return render_body_left(context)
+        request = context.get('request', UNDEFINED)
         def body_above():
             return render_body_above(context)
-        request = context.get('request', UNDEFINED)
+        def body_right():
+            return render_body_right(context)
+        def body_left():
+            return render_body_left(context)
+        def body_center():
+            return render_body_center(context)
         def body_main():
             return render_body_main(context)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def body_right():
-            return render_body_right(context)
         __M_writer = context.writer()
         __M_writer('\n            <div class="container-fluid">\n                <div id="row-above"class="row">\n                    ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_above'):
@@ -259,10 +259,10 @@ def render_body_center(context,**pageargs):
 def render_body_right(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        request = context.get('request', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def body_right():
             return render_body_right(context)
+        request = context.get('request', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n                        <div class="panel panel-default">\n                            <div class="panel-heading">\n                                <h3 class="panel-title">Recently Viewed</h3>\n                              </div>\n                              <div class="panel-body">\n                                  <ul class="nav">\n')
         if request.user.is_authenticated:

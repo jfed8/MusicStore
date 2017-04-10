@@ -1,14 +1,16 @@
 <%inherit file="/homepage/templates/base_ajax.htm" />
 
 <%block name="body_center">
-    <div class="text-center">
+
+    <div class="center-selector">
+    % for pic in pictures:
+        <img class="product_picture_modal" src="${STATIC_URL}${pic.path}" alt="${pic.product.name}">
+    % endfor
+    </div>
+
+    <div class="center-selector">
         <button id="btn_previous" class="btn btn-default">Previous</button>
         <button id="btn_next" class="btn btn-default">Next</button>
-
-
-        % for pic in pictures:
-            <img class="product_picture_modal" src="${STATIC_URL}${pic.path}" alt="${pic.product.name}">
-        % endfor
     </div>
 
 </%block>
