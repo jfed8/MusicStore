@@ -5,13 +5,15 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1490207270.3390899
+_modified_time = 1491602098.533356
 _enable_loop = True
-_template_filename = 'C:/Users/klynty/fomo/fomo/catalog/templates/index.html'
+_template_filename = '/Users/JessClapier/IntexFOMO/fomo/catalog/templates/index.html'
 _template_uri = 'index.html'
 _source_encoding = 'utf-8'
+import os, os.path, re, json
+from decimal import Decimal
 import django_mako_plus
-_exports = ['title', 'body_left', 'body_center']
+_exports = ['title', 'body_above', 'body_left', 'body_center']
 
 
 def _mako_get_namespace(context, name):
@@ -29,32 +31,39 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def body_center():
-            return render_body_center(context._locals(__M_locals))
-        def body_left():
-            return render_body_left(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        categories = context.get('categories', UNDEFINED)
         def title():
             return render_title(context._locals(__M_locals))
+        categories = context.get('categories', UNDEFINED)
+        def body_above():
+            return render_body_above(context._locals(__M_locals))
+        def body_center():
+            return render_body_center(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def body_left():
+            return render_body_left(context._locals(__M_locals))
         products = context.get('products', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n<!--\r\nbase blocks\r\n    title\r\n    header\r\n    message\r\n    menu_items\r\n    body_main\r\n    body_above\r\n    body_left\r\n    body_center\r\n    body_right\r\napp_base blocks\r\n\r\n-->\r\n')
+        __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n\n-->\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
             context['self'].title(**pageargs)
         
 
-        __M_writer('\r\n\r\n')
+        __M_writer('\n\n')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_above'):
+            context['self'].body_above(**pageargs)
+        
+
+        __M_writer('\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_left'):
             context['self'].body_left(**pageargs)
         
 
-        __M_writer('\r\n\r\n')
+        __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_center'):
             context['self'].body_center(**pageargs)
         
 
-        __M_writer('\r\n')
+        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -66,7 +75,19 @@ def render_title(context,**pageargs):
         def title():
             return render_title(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    Catalog\r\n')
+        __M_writer('\n    Catalog\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
+def render_body_above(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def body_above():
+            return render_body_above(context)
+        __M_writer = context.writer()
+        __M_writer('\n<div class="col-lg-4 col-lg-offset-4">\n<form action="/catalog/search/">\n    <div class="input-group">\n        <span class="input-group-btn">\n            <button class="btn btn-default" id="search_submit" type="submit" >Search</button>\n        </span>\n        <input  id="search_box" type="text" class="form-control" name="product_name"  placeholder="Product..." >\n    </div>\n</form>\n</div>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -79,14 +100,14 @@ def render_body_left(context,**pageargs):
         def body_left():
             return render_body_left(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    <ul class="nav nav-stacked panel">\r\n        <li class="panel-title text-center">Filter by Category:</li>\r\n')
+        __M_writer('\n\n    <div class="panel panel-default">\n      <div class="panel-heading">\n        <h3 class="panel-title">Categories</h3>\n      </div>\n      <div class="panel-body">\n          <ul class="nav nav-stacked panel">\n')
         for c in categories:
-            __M_writer('        <li><a href="/catalog/index.filter/')
+            __M_writer('              <li><a href="/catalog/index.filter/')
             __M_writer(str(c.id))
             __M_writer('"> ')
             __M_writer(str( c.name ))
-            __M_writer(' </a></li>\r\n')
-        __M_writer('        <li><a href="/catalog/"> Clear Filter </a></li>\r\n    </ul>\r\n\r\n')
+            __M_writer(' </a></li>\n')
+        __M_writer('              <li><a href="/catalog/"> Clear Filter </a></li>\n          </ul>\n      </div>\n    </div>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -95,23 +116,27 @@ def render_body_left(context,**pageargs):
 def render_body_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def body_center():
             return render_body_center(context)
         products = context.get('products', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="body-outer">\r\n        <div class="tile-outer">\r\n')
+        __M_writer('\n    <div class="body-outer">\n        <div class="tile-outer">\n')
         for p in products:
-            __M_writer('            <a href="/catalog/detail/')
+            __M_writer('                <div class="tile-container">\n                    <div class="tile-image">\n                        <a href="/catalog/detail/')
             __M_writer(str( p.id ))
-            __M_writer('">\r\n                <div class="tile-container">\r\n\r\n                    <div class="tile-image">\r\n                        <img src="')
+            __M_writer('/"><img src="')
             __M_writer(str(STATIC_URL))
             __M_writer('catalog/media/prod_imgs/')
             __M_writer(str(p.graphic))
-            __M_writer('" alt="">\r\n\r\n                    </div>\r\n                    <div class="tile-title">\r\n                        ')
+            __M_writer('" alt="')
             __M_writer(str( p.name ))
-            __M_writer('\r\n\r\n                    </div>\r\n                </div>\r\n            </a>\r\n')
-        __M_writer('        </div>\r\n    </div>\r\n\r\n    <br/>\r\n    <p>Our customer support and account management teams provide the best service in the industry. We\'re passionate about our products\r\n    as well as our customers and it shows in the level of service that we provide. We\'re always happy to help find the solution for\r\n    your needs. If a solution doesn\'t already exist, we\'ll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>\r\n\r\n')
+            __M_writer('"></a>\n                    </div>\n                    <div class="tile-title">\n                        <h4>')
+            __M_writer(str( p.name ))
+            __M_writer('</h4>\n                        <h5> <small>$')
+            __M_writer(str( p.price ))
+            __M_writer('</small></h5>\n                    </div>\n                </div>\n')
+        __M_writer('        </div>\n    </div>\n\n    <br/>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -119,6 +144,6 @@ def render_body_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/klynty/fomo/fomo/catalog/templates/index.html", "uri": "index.html", "source_encoding": "utf-8", "line_map": {"28": 0, "42": 1, "47": 18, "52": 29, "57": 57, "63": 16, "69": 16, "75": 20, "82": 20, "83": 23, "84": 24, "85": 24, "86": 24, "87": 24, "88": 24, "89": 26, "95": 31, "103": 31, "104": 34, "105": 35, "106": 35, "107": 35, "108": 39, "109": 39, "110": 39, "111": 39, "112": 43, "113": 43, "114": 49, "120": 114}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/catalog/templates/index.html", "uri": "index.html", "source_encoding": "utf-8", "line_map": {"30": 0, "46": 1, "51": 18, "56": 32, "61": 49, "66": 70, "72": 16, "78": 16, "84": 20, "90": 20, "96": 33, "103": 33, "104": 41, "105": 42, "106": 42, "107": 42, "108": 42, "109": 42, "110": 44, "116": 51, "124": 51, "125": 54, "126": 55, "127": 57, "128": 57, "129": 57, "130": 57, "131": 57, "132": 57, "133": 57, "134": 57, "135": 60, "136": 60, "137": 61, "138": 61, "139": 65, "145": 139}}
 __M_END_METADATA
 """

@@ -1,5 +1,5 @@
 $(function() {
-    var images = $('.product_picture');
+    var images = $('.product_picture_modal');
     images.hide();
     var current = 0;
 
