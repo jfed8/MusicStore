@@ -1,6 +1,6 @@
 $(function() {
     console.log('Hello ajax');
-    $("#cart-count").html("${request.user.get_cart_count()}");
+    $("#cart_count").html("${request.user.get_cart_count()}");
 
     //Ajax Form
     var options = {

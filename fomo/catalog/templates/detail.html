@@ -20,48 +20,36 @@ app_base blocks
 
 
 <%block name="body_center">
-    <div class="text-center">
-        <h1>${product.name}</h1>
-        <img temp='${ product.id }' id="prod_graph" src="${STATIC_URL}catalog/media/prod_imgs/${product.graphic}" alt="${product.name}">
-        </br>
-        <br>
-        <div class="panel panel-default">
-        <!-- Default panel contents -->
-        <div class="panel-heading">Product Details</div>
-
-        <!-- Table -->
-        <table class="table">
-            <tr>
-                <th>Price</th>
-                <th>Category</th>
-                % if hasattr(product, 'condition'):
-                    <th>Condition</th>
-                % endif
-                % if hasattr(product, 'quantity'):
-                    <th>Quantity</th>
-                % endif
-            </tr>
-            <tr>
-                <td class="text-left">${ product.price }</td>
-                <td class="text-left">${ product.category.name} </td>
-                % if hasattr(product, 'condition'):
-                    <td class="text-left">${product.condition}</td>
-                % endif
-                % if hasattr(product, 'quantity'):
-                    <td class="text-left">${product.quantity}</td>
-                % endif
-            </tr>
-        </table>
+    <div class="tile-image">
+        <a id="detail-modal-button" ><img temp="${ product.id }" id="prod_graph" src="${STATIC_URL}catalog/media/prod_imgs/${product.graphic}" alt="${ product.name }"></a>
+        <div class="tile-title">
+            <h5> <small>Click image to see more</small></h5>
         </div>
-
-            <div id='purchase_container' class="text-center">
-                 ${form}
-            </div>
-
-
     </div>
+    <h2>${ product.name }</h2>
 
-    <p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
-    as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
-    your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+            %if hasattr(product, 'monthly_price'):
+                <h3 class="detail-h3">Type: Rental</h3>
+                <h3 class="detail-h3">Monthly Price: $${ product.monthly_price }</h3>
+            %else:
+                <h3 class="detail-h3">Type: For Sale</h3>
+                <h3 class="detail-h3">Price: $${ product.price }</h3>
+            %endif
+
+            <h3 class="detail-h3">Category: ${ product.category }</h3>
+            <h3 class="detail-h3">
+                %if hasattr(product, 'quantity') and product.quantity > 0:
+                    <h3 style="color:red;" class="detail-h3">In Stock</h3>
+                % endif
+            </h3>
+            <h3 class="detail-h3" id="purchase_container">${ form }</h3>
+
+            <!-- <div id="purchase_container" class="detail-h3">
+                %if hasattr(product, 'quantity') and product.quantity > 0:
+                    <h3 style="color:red;" class="detail-h3">In Stock</h3>
+                % endif
+            </div> -->
+
+
+
 </%block>
