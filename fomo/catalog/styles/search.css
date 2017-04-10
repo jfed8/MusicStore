@@ -1,3 +1,54 @@
 .graphic {
     height: 50px;
 }
+
+.tile-outer {
+    text-align: left;
+}
+
+.tile-container {
+    display: inline-block;
+    background-color: white;
+    text-align: left;
+    padding:12px;
+    margin: 5px;
+    width: 100%;
+    border-bottom: solid #dddddd 1px;
+
+}
+
+.tile-image img {
+    width: 125px;
+    display: inline-block;
+    float: left;
+}
+
+.tile-title {
+    margin-left: 50px;
+    margin-top: 12px;
+    font-size: 1.4em;
+    display: inline-block;
+
+}
+
+#catlist {
+    list-style-type: none;
+}
+
+.input-group {
+    border-radius: 5px;
+}
+
+.input-group-btn {
+    border-radius: 5px;
+}
+
+#body-top {
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: .75em;
+    font-family: 'Raleway', sans-serif;
+    word-wrap: break-word;
+}

@@ -154,7 +154,7 @@ def CreateCategory(codename, name):
     print(R + '>>>>> Created Category:', category.name + W)
 
 '''Initialize Categories'''
-CreateCategory('string', 'String instrument')
+CreateCategory('string', 'String Instrument')
 CreateCategory('brass', 'Brass Instrument')
 CreateCategory('woodwind', 'Woodwind Instrument')
 CreateCategory('accessory', 'Accessory')
@@ -165,11 +165,12 @@ CreateCategory('percussion', 'Percussion')
 
 
 '''Function to Create BulkProduct'''
-def CreateBulkProduct(name, cat_codename, price, graphic, barcode, quantity, reorder_trigger, reorder_quantity):
+def CreateBulkProduct(name, cat_codename, description, price, graphic, barcode, quantity, reorder_trigger, reorder_quantity):
     bulkproduct = cmod.BulkProduct()
     bulkproduct.name = name
     cat1 = cmod.Category.objects.get(codename=cat_codename)
     bulkproduct.category = cat1
+    bulkproduct.description = description
     bulkproduct.price = Decimal(price)
     bulkproduct.graphic = graphic
     bulkproduct.barcode = barcode
@@ -180,18 +181,19 @@ def CreateBulkProduct(name, cat_codename, price, graphic, barcode, quantity, reo
     print(R + '>>>>> Created BulkProduct:', bulkproduct.name + W)
 
 '''Initialize BulkProduct'''
-# CreateBulkProduct(name,           cat_codename,   price,      graphic,       barcode,        quantity,  reorder_trigger, reorder_quantity):
-CreateBulkProduct(  'Drumsticks',   'accessory',    '15.99',    'drumsticks.svg',   '01234567890',  40,         5,              50)
-CreateBulkProduct(  'Microphone',   'accessory',    '25.99',    'microphone.svg',    '01274569890',  5,          1,             10)
-CreateBulkProduct(  'Amplifier',    'accessory',         '9.50',     'amplifier.svg',     '11374969890',  20,         5,        30)
-CreateBulkProduct(  'Headphones',    'accessory',         '14.50',     'headphones.svg',     '234569890',  8,         5,        30)
+# CreateBulkProduct(name,           cat_codename,  description,   price,      graphic,       barcode,        quantity,  reorder_trigger, reorder_quantity):
+CreateBulkProduct(  'Drumsticks',   'accessory',  'If you are going to rock, rock hard with these bad boys',   '15.99',    'drumsticks.svg',   '01234567890',  40,         5,              50)
+CreateBulkProduct(  'Microphone',   'accessory',  'The perfect gift for aspiring singers...no matter how bad they may be.',    '25.99',    'microphone.svg',    '01274569890',  5,          1,             10)
+CreateBulkProduct(  'Amplifier',    'accessory',  'Buy this if you like LOUD MUSIC!!!',     '9.50',     'amplifier.svg',     '11374969890',  20,         5,        30)
+CreateBulkProduct(  'Headphones',    'accessory',  'Dislike interacting with the outside world? Then buy these.',       '14.50',     'headphones.svg',     '234569890',  8,         5,        30)
 
 '''Function to Create UniqueProduct'''
-def CreateUniqueProduct(name, cat_codename, price, graphic, serial_number, condition):
+def CreateUniqueProduct(name, cat_codename, description, price, graphic, serial_number, condition):
     uniqueproduct = cmod.UniqueProduct()
     uniqueproduct.name = name
     cat1 = cmod.Category.objects.get(codename=cat_codename)
     uniqueproduct.category = cat1
+    uniqueproduct.description = description
     uniqueproduct.price = Decimal(price) #Decimal() is a constructor call
     uniqueproduct.graphic = graphic
     uniqueproduct.serial_number = serial_number
@@ -200,20 +202,21 @@ def CreateUniqueProduct(name, cat_codename, price, graphic, serial_number, condi
     print(R + '>>>>> Created UniqueProduct:', uniqueproduct.name + W)
 
 '''Initialize UniqueProduct'''
-#CreateUniqueProduct(name,      cat_codename,   price,      graphic,  serial_number,  condition):
-CreateUniqueProduct('Tuba',     'brass',        '129.99',   'tuba.svg',     'YWByK2Fe',     'used')
-CreateUniqueProduct('Trombone', 'brass',        '129.99',   'trombone.svg', 'zrQsPhub',     'used')
-CreateUniqueProduct('Oboe',     'woodwind',     '99.50',    'oboe.svg',     'asdfasdf',     'new')
-CreateUniqueProduct('Violin', 'string',         '89.99',    'violin.svg',   'Gboc9Suj',       'used')
-CreateUniqueProduct('Xylophone', 'percussion',  '119.99',    'xylophone.svg', 'Acg39Suj',    'used')
-CreateUniqueProduct('Saxaphone', 'woodwind',    '129.99',    'saxophone.svg', 'Wb1c9Suj',    'new')
+#CreateUniqueProduct(name,      cat_codename,  description,   price,      graphic,  serial_number,  condition):
+CreateUniqueProduct('Tuba',     'brass', 'This instrument sounds horrible no matter what. Perfect for beginners.',       '129.99',   'tuba.svg',     'YWByK2Fe',     'used')
+CreateUniqueProduct('Trombone', 'brass',  'I once knew a guy who would have married his trombone if it was legal.',      '129.99',   'trombone.svg', 'zrQsPhub',     'used')
+CreateUniqueProduct('Oboe',     'woodwind', 'The truth is no one has actually ever seen an Oboe, but I guess it is a thing.',    '99.50',    'oboe.svg',     'asdfasdf',     'new')
+CreateUniqueProduct('Violin', 'string',    'My wife plays this and she is super hot!...So does Jaden...:)',     '89.99',    'violin.svg',   'Gboc9Suj',       'used')
+CreateUniqueProduct('Xylophone', 'percussion',  "The cool man's piano." , '119.99',    'xylophone.svg', 'Acg39Suj',    'used')
+CreateUniqueProduct('Saxophone', 'woodwind',  "Kenny G will have nothing on you after you buy this sweet item.",  '129.99',    'saxophone.svg', 'Wb1c9Suj',    'new')
 
 '''Function to Create RentalProduct'''
-def CreateRentalProduct(name, cat_codename, price, graphic, serial_number, is_rented, condition, due_year, due_month, due_day):
+def CreateRentalProduct(name, cat_codename, description, price, graphic, serial_number, is_rented, condition, due_year, due_month, due_day):
     rentalproduct = cmod.RentalProduct()
     rentalproduct.name = name
     cat1 = cmod.Category.objects.get(codename=cat_codename)
     rentalproduct.category = cat1
+    rentalproduct.description = description
     rentalproduct.price = Decimal(price) #Decimal() is a constructor call
     rentalproduct.graphic = graphic
     rentalproduct.serial_number = serial_number

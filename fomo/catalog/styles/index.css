@@ -1,4 +1,4 @@
-.body-outer {
+/*.body-outer {
     text-align: center;
 }
 
@@ -24,4 +24,52 @@
 .tile-title {
     margin-top: 12px;
     font-size: 1.4em;
+}
+
+.input-group {
+    margin: 20px;
+}*/
+
+.tile-outer {
+    text-align: center;
+}
+
+.tile-container {
+    display: inline-block;
+    background-color: white;
+    text-align: center;
+    padding:12px;
+    margin: 5px;
+}
+
+.tile-image img {
+    width: 200px;
+    border: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #dddddd;
+    padding: 20px;
+}
+
+.tile-title {
+    margin-top: 12px;
+    font-size: 1.2em;
+
+}
+
+#catlist {
+    list-style-type: none;
+}
+
+.input-group {
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.input-group-btn {
+    border-radius: 5px;
+}
+
+#body-top {
+    margin-bottom: 20px;
 }

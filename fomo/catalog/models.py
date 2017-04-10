@@ -15,6 +15,7 @@ class Product(PolymorphicModel):
     #id
     name = models.TextField(blank=True, null=True)
     category = models.ForeignKey('Category')
+    description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=8, decimal_places=2) # 999,999.00
     graphic = models.TextField(blank=True, null=True)
     available = models.BooleanField(default = 1)

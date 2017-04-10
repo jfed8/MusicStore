@@ -1,23 +1,17 @@
-/*#body-left {
-    background-color: white;
+#body-left {
+
 }
 
 #body-center {
-    background-color: white;
+
 }
 
 #body-right {
-    background-color: white;
-}*/
+    padding-left: 0px;
+}
 
-/*#body-top {
-    background-color: white;
-    height: 20px;
-}*/
 
 #body-breadcrumb {
-    height: 20px;
-    margin-bottom: 8px;
 }
 
 /*.jumbotron {
@@ -233,4 +227,18 @@
 
 #cart-logo span {
     margin-left: 8px;
+}
+
+.footer {
+    margin: 6px;
+    text-align: center;
+}
+
+.product_picture {
+    margin-right: 15px;
+}
+
+.input-group {
+    border-radius: 5px;
+    margin: 20px;
 }
