@@ -255,7 +255,7 @@ AddProductImages('Drumsticks', 'catalog/media/detail_imgs/drumsticks/drumsticks-
 AddProductImages('Headphones', 'catalog/media/detail_imgs/headphones/headphones-1.jpg', 'catalog/media/detail_imgs/headphones/headphones-2.jpg', 'catalog/media/detail_imgs/headphones/headphones-3.jpg')
 AddProductImages('Microphone', 'catalog/media/detail_imgs/microphone/microphone-1.jpg', 'catalog/media/detail_imgs/microphone/microphone-2.jpg', 'catalog/media/detail_imgs/microphone/microphone-3.jpg')
 AddProductImages('Oboe', 'catalog/media/detail_imgs/oboe/oboe-1.jpg', 'catalog/media/detail_imgs/oboe/oboe-2.jpg', 'catalog/media/detail_imgs/oboe/oboe-3.jpg')
-AddProductImages('Saxaphone', 'catalog/media/detail_imgs/saxophone/saxophone-1.jpg', 'catalog/media/detail_imgs/saxophone/saxophone-2.jpg', 'catalog/media/detail_imgs/saxophone/saxophone-3.jpg')
+AddProductImages('Saxophone', 'catalog/media/detail_imgs/saxophone/saxophone-1.jpg', 'catalog/media/detail_imgs/saxophone/saxophone-2.jpg', 'catalog/media/detail_imgs/saxophone/saxophone-3.jpg')
 AddProductImages('Trombone', 'catalog/media/detail_imgs/trombone/trombone-1.jpg', 'catalog/media/detail_imgs/trombone/trombone-2.jpg', 'catalog/media/detail_imgs/trombone/trombone-3.jpg')
 AddProductImages('Tuba', 'catalog/media/detail_imgs/tuba/tuba-1.jpg', 'catalog/media/detail_imgs/tuba/tuba-2.jpg', 'catalog/media/detail_imgs/tuba/tuba-3.jpg')
 AddProductImages('Violin', 'catalog/media/detail_imgs/violin/violin-1.jpg', 'catalog/media/detail_imgs/violin/violin-2.jpg', 'catalog/media/detail_imgs/violin/violin-3.jpg')
