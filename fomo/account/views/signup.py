@@ -15,8 +15,7 @@ def process_request(request):
     form = SignUpForm(request)
     if form.is_valid():
         form.commit()
-
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/catalog/')
 
     # render the template
     return dmp_render(request, 'signup.html', {
