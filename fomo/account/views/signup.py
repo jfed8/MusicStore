@@ -15,6 +15,7 @@ def process_request(request):
     form = SignUpForm(request)
     if form.is_valid():
         form.commit()
+
         return HttpResponseRedirect('/')
 
     # render the template
@@ -71,7 +72,6 @@ class SignUpForm(FormMixIn, forms.Form):
     def commit(self):
             user = amod.FOMOUser()
             user.username = self.cleaned_data.get('username')
-            print('>>>>>>>>>', self.cleaned_data.get('username'), '<<<<<<<')
             user.set_password(self.cleaned_data.get('password1'))
             user.last_login = datetime.now()
             user.first_name = self.cleaned_data.get('first_name')

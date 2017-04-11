@@ -30,7 +30,7 @@ def modal(request):
         #redirect to the my account page
         return HttpResponse('''
             <script>
-                window.location.href = '/homepage/index/';
+                window.location.href = '/catalog/index/';
             </script>
         ''')
 
