@@ -6,6 +6,7 @@ from account import models as amod
 from django.contrib.auth.models import Permission, Group
 from datetime import date, datetime
 from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login
 
 @view_function
 def process_request(request):
@@ -59,7 +60,7 @@ class SignUpForm(FormMixIn, forms.Form):
         if len(duplicate)>0:
             raise forms.ValidationError('Username not available')
         return un
-    
+
     def clean(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
@@ -93,3 +94,5 @@ class SignUpForm(FormMixIn, forms.Form):
             #Add user to Customer Group
             group = Group.objects.get(name='Customers')
             group.user_set.add(user)
+
+            login(self.request, user)
