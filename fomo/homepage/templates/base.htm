@@ -133,13 +133,14 @@ base blocks
                         <%block name="body_right">
 
                         <div class="panel panel-default">
-
                                       % if request.user.is_authenticated:
                                         <div class="panel-heading">
                                           <h3 class="panel-title">Recently Viewed</h3>
                                         </div>
                                         <div class="panel-body">
                                             <ul class="nav">
+
+
                                           % for prod in request.user.displayHistory():
                                           <li><a href="/catalog/detail/${ prod.id }"><img class="product_picture" height="20" src="${STATIC_URL}catalog/media/prod_imgs/${prod.graphic}" />${ prod.name } </a></li>
                                           % endfor
@@ -150,6 +151,7 @@ base blocks
                                         <div class="panel-body">
                                             <ul class="nav">
                                           <p><a href="/account/login/">Sign in</a> to view our products</p>
+
                                       % endif
                                   </ul>
                               </div>
