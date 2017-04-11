@@ -1,0 +1,102 @@
+<%inherit file="/homepage/templates/base_ajax.htm" />
+
+<%block name="body_center">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <h2> Order Receipt</h2>
+    <p>Thank you ${ sale.FOMOUser.first_name } for your order! Your order details and receipt are listed below.</p>
+
+    <table class="table table-striped" style="text-align:left;">
+        <h3 style="text-align:left; margin-bottom:0px;"><u>Details</u></h3>
+        <tr>
+            <th style="text-align:left;">Order ID</th>
+            <th style="padding-left:50px;">Date</th>
+            <th style="padding-left:50px;">Subtotal</th>
+            <th style="padding-left:50px;">Tax</th>
+            <th style="padding-left:50px;">Shipping</th>
+            <th style="padding-left:50px;">Total</th>
+        </tr>
+        <tr>
+            <td style="text-align:left;">${str(sale.id)}</td>
+            <td style="padding-left:50px;">${sale.date_stamp.date()}</td>
+            <td style="padding-left:50px;">$${sale.subtotal}</td>
+            <td style="padding-left:50px;">$${sale.tax}</td>
+            <td style="padding-left:50px;">$${sale.shipping}</td>
+            <td style="padding-left:50px;">$${sale.total}</td>
+        </tr>
+    </table>
+    <br>
+    <table class="table table-striped" style="text-align:left;">
+        <h3 style="text-align:left; margin-bottom:0px;"><u>Items</u></h3>
+        <tr>
+            <th>Name</th>
+            <th style="padding-left:50px;">Category</th>
+            <th style="padding-left:50px;">Quantity</th>
+            <th style="padding-left:50px;">Price</th>
+        </tr>
+        % for item in saleitems:
+            <tr>
+                <td style="text-align:left;">${item.product.name}</td>
+                <td style="padding-left:50px;">${item.product.category.name}</td>
+                <td style="padding-left:50px;">${item.quantity}</td>
+                <td style="padding-left:50px;">$${item.sale_price}</td>
+            </tr>
+        % endfor
+    </table>
+    <br>
+    <table class="table table-striped" style="text-align:left;">
+        <h3 style="text-align:left; margin-bottom:0px;"><u>Payment</u></h3>
+        <tr style="text-align:left;">
+            <th style="text-align:left;">Method</th>
+            <th style="padding-left:50px; text-align:left;">Card Brand</th>
+            <th style="padding-left:50px; text-align:left;">Card Expiration</th>
+            <th style="padding-left:50px; text-align:left;">Amount Payed</th>
+            <th style="padding-left:50px; text-align:left;">Amount Refunded</th>
+            <th style="padding-left:50px; text-align:left;">Currency</th>
+        </tr>
+        <tr style="text-align:left;">
+            <td style="text-align:left;">${payment.method}</td>
+            <td style="padding-left:50px; text-align:left;">${payment.card_brand}</td>
+            <td style="padding-left:50px; text-align:left;">${payment.card_expiration}</td>
+            <td style="padding-left:50px; text-align:left;">$${payment.amount}</td>
+            <td style="padding-left:50px; text-align:left;">$${payment.amount_refunded}</td>
+            <td style="padding-left:50px; text-align:left;">${payment.currency}</td>
+        </tr>
+    </table>
+
+
+    <div id='table_ship_address'>
+        <table class="table table-striped">
+            <h3 style="text-align:left; margin-bottom:0px;"><u>Shipping</u></h3>
+            <tr>
+                <td>Full name: </td>
+                <td>${shippingaddress.fullname}</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>${shippingaddress.address}</td>
+            </tr>
+            <tr>
+                <td>City: </td>
+                <td>${shippingaddress.city}</td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td>${shippingaddress.state}</td>
+            </tr>
+            <tr>
+                <td>Zipcode:</td>
+                <td>${shippingaddress.zipcode}</td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>${shippingaddress.phone}</td>
+            </tr>
+        </table>
+
+    </div>
+
+
+
+    <br>
+
+</%block>

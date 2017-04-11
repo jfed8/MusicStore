@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django import forms
 import stripe
 from decimal import Decimal
+from django.core.mail import send_mail
 
 from .. import dmp_render, dmp_render_to_string
 
@@ -36,8 +37,6 @@ def process_request(request):
 
     saleitems = checkmod.SaleItem.objects.filter(sale_id= sale.id)
 
-
-
     context = {
 
         'sale' : sale,
@@ -45,4 +44,23 @@ def process_request(request):
         'payment' : payment,
         'saleitems' : saleitems,
     }
+
+    # #send email
+    # from_name = 'FOMO Customer Support'
+    # from_email = settings.DEFAULT_FROM_EMAIL
+    # subject = "Order Receipt"
+    # message = ''
+    # to_email = 'klynt.yardley@gmail.com'
+    # html_message = dmp_render_to_string(request, 'receipt-ajax.html', context)
+    # print(html_message)
+    # if from_email != '':
+    #     send_mail(
+    #             subject,
+    #             message,
+    #             from_email,
+    #             [to_email],
+    #             fail_silently=False,
+    #             html_message=html_message,
+    #         )
+
     return dmp_render(request, 'receipt.html', context)

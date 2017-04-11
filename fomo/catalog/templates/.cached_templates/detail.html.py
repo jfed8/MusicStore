@@ -5,11 +5,13 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491530979.2682567
+_modified_time = 1491841862.730444
 _enable_loop = True
-_template_filename = 'C:/Users/klynty/fomo/fomo/catalog/templates/detail.html'
+_template_filename = '/Users/JessClapier/IntexFOMO/fomo/catalog/templates/detail.html'
 _template_uri = 'detail.html'
 _source_encoding = 'utf-8'
+import os, os.path, re, json
+from decimal import Decimal
 import django_mako_plus
 _exports = ['title', 'body_center']
 
@@ -29,26 +31,26 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        hasattr = context.get('hasattr', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         product = context.get('product', UNDEFINED)
-        def body_center():
-            return render_body_center(context._locals(__M_locals))
         def title():
             return render_title(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        form = context.get('form', UNDEFINED)
-        hasattr = context.get('hasattr', UNDEFINED)
+        def body_center():
+            return render_body_center(context._locals(__M_locals))
         __M_writer = context.writer()
-        __M_writer('\r\n<!--\r\nbase blocks\r\n    title\r\n    header\r\n    message\r\n    menu_items\r\n    body_main\r\n    body_above\r\n    body_left\r\n    body_center\r\n    body_right\r\napp_base blocks\r\n    more_menu_items\r\n-->\r\n\r\n')
+        __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n    more_menu_items\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
             context['self'].title(**pageargs)
         
 
-        __M_writer('\r\n\r\n\r\n')
+        __M_writer('\n\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_center'):
             context['self'].body_center(**pageargs)
         
 
-        __M_writer('\r\n')
+        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -60,7 +62,7 @@ def render_title(context,**pageargs):
         def title():
             return render_title(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    Product Detail\r\n')
+        __M_writer('\n    Product Detail\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -69,44 +71,43 @@ def render_title(context,**pageargs):
 def render_body_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        hasattr = context.get('hasattr', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         product = context.get('product', UNDEFINED)
         def body_center():
             return render_body_center(context)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        form = context.get('form', UNDEFINED)
-        hasattr = context.get('hasattr', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="text-center">\r\n        <h1>')
-        __M_writer(str(product.name))
-        __M_writer("</h1>\r\n        <img temp='")
+        __M_writer('\n    <div class="tile-image">\n        <a id="detail-modal-button" ><img temp="')
         __M_writer(str( product.id ))
-        __M_writer('\' id="prod_graph" src="')
+        __M_writer('" id="prod_graph" src="')
         __M_writer(str(STATIC_URL))
         __M_writer('catalog/media/prod_imgs/')
         __M_writer(str(product.graphic))
         __M_writer('" alt="')
-        __M_writer(str(product.name))
-        __M_writer('">\r\n        </br>\r\n        <br>\r\n        <div class="panel panel-default">\r\n        <!-- Default panel contents -->\r\n        <div class="panel-heading">Product Details</div>\r\n\r\n        <!-- Table -->\r\n        <table class="table">\r\n            <tr>\r\n                <th>Price</th>\r\n                <th>Category</th>\r\n')
-        if hasattr(product, 'condition'):
-            __M_writer('                    <th>Condition</th>\r\n')
-        if hasattr(product, 'quantity'):
-            __M_writer('                    <th>Quantity</th>\r\n')
-        __M_writer('            </tr>\r\n            <tr>\r\n                <td class="text-left">')
-        __M_writer(str( product.price ))
-        __M_writer('</td>\r\n                <td class="text-left">')
-        __M_writer(str( product.category.name))
-        __M_writer(' </td>\r\n')
-        if hasattr(product, 'condition'):
-            __M_writer('                    <td class="text-left">')
-            __M_writer(str(product.condition))
-            __M_writer('</td>\r\n')
-        if hasattr(product, 'quantity'):
-            __M_writer('                    <td class="text-left">')
-            __M_writer(str(product.quantity))
-            __M_writer('</td>\r\n')
-        __M_writer('            </tr>\r\n        </table>\r\n        </div>\r\n\r\n            <div id=\'purchase_container\' class="text-center">\r\n                 ')
-        __M_writer(str(form))
-        __M_writer('\r\n            </div>\r\n\r\n\r\n    </div>\r\n\r\n    <p>Our customer support and account management teams provide the best service in the industry. We\'re passionate about our products\r\n    as well as our customers and it shows in the level of service that we provide. We\'re always happy to help find the solution for\r\n    your needs. If a solution doesn\'t already exist, we\'ll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>\r\n')
+        __M_writer(str( product.name ))
+        __M_writer('"></a>\n        <div class="tile-title">\n            <h5> <small>Click image to see more</small></h5>\n        </div>\n    </div>\n    <h2>')
+        __M_writer(str( product.name ))
+        __M_writer('</h2>\n\n')
+        if hasattr(product, 'monthly_price'):
+            __M_writer('                <h3 class="detail-h3">Type: Rental</h3>\n                <h3 class="detail-h3">Monthly Price: $')
+            __M_writer(str( product.monthly_price ))
+            __M_writer('</h3>\n')
+        else:
+            __M_writer('                <h3 class="detail-h3">Type: For Sale</h3>\n                <h3 class="detail-h3">Price: $')
+            __M_writer(str( product.price ))
+            __M_writer('</h3>\n')
+        __M_writer('\n            <h3 class="detail-h3">Category: ')
+        __M_writer(str( product.category ))
+        __M_writer('</h3>\n            <h3 class="detail-h3">\n')
+        if hasattr(product, 'quantity') and product.quantity > 0:
+            __M_writer('                    <h3 style="color:red;" class="detail-h3">In Stock</h3>\n')
+        __M_writer('            </h3>\n            <h3 class="detail-h3" id="purchase_container">')
+        __M_writer(str( form ))
+        __M_writer('</h3>\n\n            <!-- <div id="purchase_container" class="detail-h3">\n')
+        if hasattr(product, 'quantity') and product.quantity > 0:
+            __M_writer('                    <h3 style="color:red;" class="detail-h3">In Stock</h3>\n')
+        __M_writer('            </div> -->\n\n\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -114,6 +115,6 @@ def render_body_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/klynty/fomo/fomo/catalog/templates/detail.html", "uri": "detail.html", "source_encoding": "utf-8", "line_map": {"28": 0, "41": 1, "46": 19, "51": 67, "57": 17, "63": 17, "69": 22, "79": 22, "80": 24, "81": 24, "82": 25, "83": 25, "84": 25, "85": 25, "86": 25, "87": 25, "88": 25, "89": 25, "90": 37, "91": 38, "92": 40, "93": 41, "94": 43, "95": 45, "96": 45, "97": 46, "98": 46, "99": 47, "100": 48, "101": 48, "102": 48, "103": 50, "104": 51, "105": 51, "106": 51, "107": 53, "108": 58, "109": 58, "115": 109}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/catalog/templates/detail.html", "uri": "detail.html", "source_encoding": "utf-8", "line_map": {"30": 0, "43": 1, "48": 19, "53": 55, "59": 17, "65": 17, "71": 22, "81": 22, "82": 24, "83": 24, "84": 24, "85": 24, "86": 24, "87": 24, "88": 24, "89": 24, "90": 29, "91": 29, "92": 31, "93": 32, "94": 33, "95": 33, "96": 34, "97": 35, "98": 36, "99": 36, "100": 38, "101": 39, "102": 39, "103": 41, "104": 42, "105": 44, "106": 45, "107": 45, "108": 48, "109": 49, "110": 51, "116": 110}}
 __M_END_METADATA
 """

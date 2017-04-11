@@ -1,4 +1,13 @@
-.product_picture {
-    margin-top: 10px;
-    width: 350px;
+.product_picture_modal {
+    width: 75%;
+    margin: 20px;
+}
+
+.selector {
+    margin: 7px;
+
+}
+
+.center-selector {
+    text-align: center;
 }

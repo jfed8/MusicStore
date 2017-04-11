@@ -3,7 +3,6 @@
 ## imports
 <%! from django_mako_plus import get_template_css, get_template_js %>
 
-
 <!--
 base blocks
     title
@@ -17,47 +16,33 @@ base blocks
     body_right
 -->
 
-
-
-
-
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
   <head>
 
-
-
     ## add any site-wide scripts or CSS here; for example, jquery:
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="${ STATIC_URL }homepage/media/jquery.datetimepicker.full.js"></script>
     <script src="${ STATIC_URL }homepage/media/jquery.loadmodal.js"></script>
     <script src="${ STATIC_URL }homepage/media/jquery.form.js"></script>
-    <link type="text/css" rel="stylesheet" href="${ STATIC_URL }homepage/media/simplex.css">
+    <link type="text/css" rel="stylesheet" href="${ STATIC_URL }homepage/styles/readable.css">
+    <link type="text/css" rel="stylesheet" href="${ STATIC_URL }homepage/styles/base.css">
     <link type="text/css" rel="stylesheet" href="${ STATIC_URL }homepage/media/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     ## render the css with the same name as this page
     ${ get_template_css(self, request, context) }
 
     ## favicon
-    <link rel="icon" type="image/png" sizes="32x32"href="${ STATIC_URL }homepage/media/FOMOLogo-03.png">
+    <link rel="icon" type="image/png" sizes="32x32"href="${ STATIC_URL }homepage/media/FOMOLogo.ico">
 
     ## title
     <title><%block name="title">Home</%block> | Family Oriented Music Organization</title>
 
   </head>
   <body>
-
-      <div class="container-fluid">
-          <div id="maintenance-row" class="row text-center">
-              <div class="alert alert-danger" role="alert">
-                  <p><span class="bold">Warning!</span> This is a dev site and we will do maintenace at anytime without notice.</p>
-              </div>
-          </div><!--maintenance-row-->
-      </div><!--container-fluid, maintenance-->
-
-
 
       <%block name="header">
       <header>
@@ -71,10 +56,9 @@ base blocks
               </div>
           </div> <!--container-fluid, message-->
 
-
           <div class="container-fluid">
               <div class="row">
-                  <nav class="navbar navbar-default">
+                  <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0px;">
                       <!-- Brand and toggle get grouped for better mobile display -->
                       <div class="navbar-header">
                           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -83,7 +67,7 @@ base blocks
                               <span class="icon-bar"></span>
                               <span class="icon-bar"></span>
                           </button>
-                          <a class="navbar-left" id="logo"href="/"><img src="${ STATIC_URL }homepage/media/FOMOLogo-01.png" alt="FOMO Logo"></a>
+                          <a class="navbar-brand" id="logo" href="/"><img src="${ STATIC_URL }homepage/media/FOMOLogo-03.png" alt="Family Oriented Music Organization"/></a>
                       </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -97,8 +81,8 @@ base blocks
                 <ul class="nav navbar-nav navbar-right">
                     % if request.user.is_authenticated:
 
-                    <li><span id='cart-count' class="badge">${request.user.get_cart_count()}</span><a id="cart"  href="/checkout/cart"><img src="${ STATIC_URL }homepage/media/cart.png" alt="Shopping Cart"></a></li>
-
+                    <!-- <li><span id='cart-count' class="badge">${request.user.get_cart_count()}</span><a id="cart"  href="/checkout/cart/"><img src="${ STATIC_URL }homepage/media/cart.png" alt="Shopping Cart"></a></li> -->
+                    <li><a href="/checkout/cart/" class="fa fa-shopping-cart fa-6" id="cart-logo" aria-hidden="true"><span id="cart_count" class="badge">${request.user.get_cart_count()}</span></a></li>
                         <li class="dropdown">
 
                                 <a href="#" class=" dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi ${ request.user.first_name }<span class="caret"></span></a>
@@ -147,16 +131,23 @@ base blocks
                     </div>
                     <div id="body-right" class="col-md-2">
                         <%block name="body_right">
-                            <ul class="nav nav-stacked panel">
-                                <li class="panel-title text-center">Recent Products:</li>
-                                % if request.user.is_authenticated:
-                                    % for prod in request.user.displayHistory():
-                                    <li><a href="/catalog/detail/${ prod.id }"> ${ prod.name } </a></li>
-                                    % endfor
-                                % else:
-                                    <p><a href="/account/login/">Sign in</a> to view your recent products.</p>
-                                % endif
-                            </ul>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Recently Viewed</h3>
+                              </div>
+                              <div class="panel-body">
+                                  <ul class="nav">
+                                      % if request.user.is_authenticated:
+                                          % for prod in request.user.displayHistory():
+                                          <li><a href="/catalog/detail/${ prod.id }"><img class="product_picture" height="20" src="${STATIC_URL}catalog/media/prod_imgs/${prod.graphic}" />${ prod.name } </a></li>
+                                          % endfor
+                                      % else:
+                                          <p><a href="/account/login/">Sign in</a> to view your recent products.</p>
+                                      % endif
+                                  </ul>
+                              </div>
+                        </div>
                         </%block>
                     </div>
                 </div> <!--body-row-->

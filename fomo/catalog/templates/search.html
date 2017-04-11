@@ -18,8 +18,22 @@ app_base blocks
     Search Results
 </%block>
 
+<%block name="body_above">
+<div class="col-lg-4 col-lg-offset-4">
+<form action="/catalog/search/">
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-default" id="search_submit" type="submit" >Search</button>
+        </span>
+        <input  id="search_box" type="text" class="form-control" name="product_name"  placeholder="Product..." >
+    </div>
+</form>
+</div>
+
+</%block>
+
 <%block name="body_center">
-<table class="table table-striped">
+<!-- <table class="table table-striped">
     <caption class="text-center"><strong>Search Results</strong></caption>
     <tr>
         <th></th>
@@ -38,8 +52,23 @@ app_base blocks
         </tr>
 
     % endfor
-</table>
-<p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
-as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
-your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+</table> -->
+
+<h5 style="border-bottom: solid #dddddd 1px;">Search Results</h5>
+
+<div class="tile-outer">
+    %for p in products:
+        <div class="tile-container">
+            <div class="tile-image">
+                <a href="/catalog/detail/${ p.id }/"><img src="${STATIC_URL}catalog/media/prod_imgs/${p.graphic}" alt="${ p.name }"></a>
+            </div>
+            <div class="tile-title">
+                <h4>${ p.name }</h4>
+                <h5> <small>$${ p.price }</small></h5>
+                <p>${ p.description }</p>
+            </div>
+        </div>
+    %endfor
+</div>
+
 </%block>
