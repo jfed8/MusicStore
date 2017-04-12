@@ -17,7 +17,7 @@ def process_request(request):
     if form.is_valid():
         form.commit(request)
         #redirect to the my account page
-        return HttpResponseRedirect('/account/myaccount')
+        return HttpResponseRedirect('/catalog/index/')
 
     #If not authenticated
     return dmp_render(request, 'login.html', {
@@ -33,7 +33,7 @@ def modal(request):
         #redirect to the my account page
         return HttpResponse('''
             <script>
-                window.location.href = '/homepage/index/';
+                window.location.href = '/catalog/index/';
             </script>
         ''')
 
