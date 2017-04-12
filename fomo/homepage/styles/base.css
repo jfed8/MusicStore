@@ -40,7 +40,7 @@
     color: rgb(255, 255, 255);
     position: relative;
     min-height: 350px;
-    background: url("../media/asiapianoEdit.jpg") no-repeat scroll 0px 100% / cover transparent;
+    background: url("static/homepage/media/asiapianoEdit.jpg") no-repeat scroll 0px 100% / cover transparent;
 }
 
 .cover2{
