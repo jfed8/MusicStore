@@ -94,4 +94,5 @@ class SignUpForm(FormMixIn, forms.Form):
             group = Group.objects.get(name='Customers')
             group.user_set.add(user)
 
-            login(self.request, user)
+            self.user = authenticate(username=user.username, password=self.cleaned_data.get('password1'))
+            login(self.request, self.user)
