@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491839695.876173
+_modified_time = 1492027722.911802
 _enable_loop = True
 _template_filename = '/Users/JessClapier/IntexFOMO/fomo/homepage/templates/base.htm'
 _template_uri = '/homepage/templates/base.htm'
@@ -23,24 +23,24 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def message():
-            return render_message(context._locals(__M_locals))
-        def menu_items():
-            return render_menu_items(context._locals(__M_locals))
-        def body_right():
-            return render_body_right(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
         def body_left():
             return render_body_left(context._locals(__M_locals))
-        def body_above():
-            return render_body_above(context._locals(__M_locals))
+        def body_right():
+            return render_body_right(context._locals(__M_locals))
         def body_main():
             return render_body_main(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
+        def message():
+            return render_message(context._locals(__M_locals))
         def header():
             return render_header(context._locals(__M_locals))
+        def body_above():
+            return render_body_above(context._locals(__M_locals))
+        def menu_items():
+            return render_menu_items(context._locals(__M_locals))
         def title():
             return render_title(context._locals(__M_locals))
-        self = context.get('self', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         def body_center():
             return render_body_center(context._locals(__M_locals))
         __M_writer = context.writer()
@@ -87,7 +87,7 @@ def render_body(context,**pageargs):
                     
         
         __M_locals_builtin_stored = __M_locals_builtin()
-        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['datetime','now','date'] if __M_key in __M_locals_builtin_stored]))
+        __M_locals.update(__M_dict_builtin([(__M_key, __M_locals_builtin_stored[__M_key]) for __M_key in ['date','datetime','now'] if __M_key in __M_locals_builtin_stored]))
         __M_writer('\n            <p class="text-muted"> &copy; ')
         __M_writer(str( now.year ))
         __M_writer('. All rights reserved. </p>\n      </div>\n</footer>\n\n\n')
@@ -114,14 +114,14 @@ def render_title(context,**pageargs):
 def render_header(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def message():
             return render_message(context)
+        def header():
+            return render_header(context)
         def menu_items():
             return render_menu_items(context)
         request = context.get('request', UNDEFINED)
-        def header():
-            return render_header(context)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n      <header>\n          <div class="container-fluid">\n              <div class="row">\n                  <div id="message" >                                                                   <!--Can\'t get it to float right-->\n                      ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'message'):
@@ -182,15 +182,15 @@ def render_body_main(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        def body_right():
-            return render_body_right(context)
-        request = context.get('request', UNDEFINED)
-        def body_above():
-            return render_body_above(context)
-        def body_main():
-            return render_body_main(context)
         def body_left():
             return render_body_left(context)
+        def body_right():
+            return render_body_right(context)
+        def body_main():
+            return render_body_main(context)
+        def body_above():
+            return render_body_above(context)
+        request = context.get('request', UNDEFINED)
         def body_center():
             return render_body_center(context)
         __M_writer = context.writer()
@@ -259,13 +259,14 @@ def render_body_center(context,**pageargs):
 def render_body_right(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def body_right():
             return render_body_right(context)
         request = context.get('request', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n\n                        <div class="panel panel-default">\n                            <div class="panel-heading">\n                                <h3 class="panel-title">Recently Viewed</h3>\n                              </div>\n                              <div class="panel-body">\n                                  <ul class="nav">\n')
+        __M_writer('\n\n                        <div class="panel panel-default">\n')
         if request.user.is_authenticated:
+            __M_writer('                                        <div class="panel-heading">\n                                          <h3 class="panel-title">Recently Viewed</h3>\n                                        </div>\n                                        <div class="panel-body">\n                                            <ul class="nav">\n\n\n')
             for prod in request.user.displayHistory():
                 __M_writer('                                          <li><a href="/catalog/detail/')
                 __M_writer(str( prod.id ))
@@ -277,7 +278,7 @@ def render_body_right(context,**pageargs):
                 __M_writer(str( prod.name ))
                 __M_writer(' </a></li>\n')
         else:
-            __M_writer('                                          <p><a href="/account/login/">Sign in</a> to view your recent products.</p>\n')
+            __M_writer('                                        <div class="panel-heading">\n                                          <h3 class="panel-title">Shop Now</h3>\n                                        </div>\n                                        <div class="panel-body">\n                                            <ul class="nav">\n                                          <p><a href="/account/login/">Sign in</a> to view our products</p>\n\n')
         __M_writer('                                  </ul>\n                              </div>\n                        </div>\n                        ')
         return ''
     finally:
@@ -286,6 +287,6 @@ def render_body_right(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/JessClapier/IntexFOMO/fomo/homepage/templates/base.htm", "uri": "/homepage/templates/base.htm", "source_encoding": "utf-8", "line_map": {"19": 4, "21": 0, "47": 2, "48": 4, "49": 25, "50": 27, "51": 27, "52": 28, "53": 28, "54": 29, "55": 29, "56": 30, "57": 30, "58": 31, "59": 31, "60": 32, "61": 32, "62": 36, "63": 36, "64": 36, "65": 39, "66": 39, "67": 39, "68": 42, "73": 42, "78": 107, "83": 155, "84": 160, "91": 163, "92": 164, "93": 164, "94": 170, "95": 170, "96": 170, "102": 42, "108": 42, "114": 47, "126": 47, "131": 54, "132": 70, "133": 70, "138": 78, "139": 82, "140": 83, "141": 84, "142": 84, "143": 84, "144": 84, "145": 85, "146": 85, "147": 88, "148": 88, "149": 96, "150": 97, "151": 100, "157": 52, "163": 52, "169": 76, "175": 76, "181": 109, "197": 109, "202": 116, "207": 122, "212": 130, "217": 151, "223": 112, "229": 112, "235": 120, "241": 120, "247": 128, "253": 128, "259": 133, "267": 133, "268": 141, "269": 142, "270": 143, "271": 143, "272": 143, "273": 143, "274": 143, "275": 143, "276": 143, "277": 143, "278": 143, "279": 145, "280": 146, "281": 148, "287": 281}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/homepage/templates/base.htm", "uri": "/homepage/templates/base.htm", "source_encoding": "utf-8", "line_map": {"19": 4, "21": 0, "47": 2, "48": 4, "49": 25, "50": 27, "51": 27, "52": 28, "53": 28, "54": 29, "55": 29, "56": 30, "57": 30, "58": 31, "59": 31, "60": 32, "61": 32, "62": 36, "63": 36, "64": 36, "65": 39, "66": 39, "67": 39, "68": 42, "73": 42, "78": 107, "83": 163, "84": 168, "91": 171, "92": 172, "93": 172, "94": 178, "95": 178, "96": 178, "102": 42, "108": 42, "114": 47, "126": 47, "131": 54, "132": 70, "133": 70, "138": 78, "139": 82, "140": 83, "141": 84, "142": 84, "143": 84, "144": 84, "145": 85, "146": 85, "147": 88, "148": 88, "149": 96, "150": 97, "151": 100, "157": 52, "163": 52, "169": 76, "175": 76, "181": 109, "197": 109, "202": 116, "207": 122, "212": 130, "217": 159, "223": 112, "229": 112, "235": 120, "241": 120, "247": 128, "253": 128, "259": 133, "267": 133, "268": 136, "269": 137, "270": 144, "271": 145, "272": 145, "273": 145, "274": 145, "275": 145, "276": 145, "277": 145, "278": 145, "279": 145, "280": 147, "281": 148, "282": 156, "288": 282}}
 __M_END_METADATA
 """

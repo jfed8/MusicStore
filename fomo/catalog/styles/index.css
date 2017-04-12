@@ -51,6 +51,11 @@
     padding: 20px;
 }
 
+.tile-image img:hover {
+    border-color: gray;
+
+}
+
 .tile-title {
     margin-top: 12px;
     font-size: 1.2em;

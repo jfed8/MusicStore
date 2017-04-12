@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from catalog import models as cmod
+from checkout import models as checkmod
 from decimal import Decimal
 
 # Define models here
@@ -56,6 +57,10 @@ class FOMOUser(AbstractUser):
     def retrieveCart(self):
         usercart = CartItem.objects.filter(FOMOUser_id = self.id, status = 'active')
         return usercart
+
+    def retrieveOrders(self):
+        orders = checkmod.Sale.objects.filter(FOMOUser_id = self.id)
+        return orders
 
     def emptyCart(self):
         for item in self.retrieveCart():

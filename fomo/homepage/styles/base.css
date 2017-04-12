@@ -40,7 +40,7 @@
     color: rgb(255, 255, 255);
     position: relative;
     min-height: 350px;
-    background: url("static/homepage/media/asiapianoEdit.jpg") no-repeat scroll 0px 100% / cover transparent;
+    background: url("/static/homepage/media/asiapianoEdit.jpg") no-repeat scroll 0px 100% / cover transparent;
 }
 
 .cover2{
@@ -161,7 +161,7 @@
     position: absolute;
     display: block;
     left: 18.5%;
-    top: 35%;
+    top: 36%;
     background-color: #4582ec;
     border-color: #4582ec;
     color: white;
