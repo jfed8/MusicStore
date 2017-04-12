@@ -56,4 +56,6 @@ class ChangePasswordForm(FormMixIn, forms.Form):
         user.set_password(newpassword)
         user.save()
         '''Login user again'''
-        login(request, user)
+
+        self.user = authenticate(username=user.username, password=newpassword)
+        login(self.request, self.user)
