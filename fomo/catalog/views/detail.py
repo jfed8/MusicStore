@@ -6,6 +6,7 @@ from catalog import models as cmod
 from account import models as amod
 from django import forms
 from formlib.form import FormMixIn
+from django.contrib import messages
 
 from .. import dmp_render, dmp_render_to_string
 
@@ -34,7 +35,7 @@ def process_request(request):
 
     if form.is_valid():
         form.commit(historyitem)
-
+        messages.success(request, 'Item successfully added to cart.')
 
     template_name = 'detail.html'
     if request.method =='POST':
@@ -57,20 +58,16 @@ class PurchaseForm(FormMixIn, forms.Form):
         if hasattr(product, 'quantity'):
             self.fields['quantity'] = forms.IntegerField(label='Quantity')
 
-    def clean_quantity(self):
-        '''Check Quantity'''
-        qty_request = self.cleaned_data.get('quantity')
-        qty_available = self.product.quantity
-        user = self.request.user
-        if qty_request <= 0:
-            raise forms.ValidationError('Quantity must be greater than 0')
-        elif qty_request > qty_available:
-            raise forms.ValidationError('Not enough in stock')
-
-        return qty_request
-
     def clean(self):
         usercart = self.request.user.retrieveCart()
+        if hasattr(self.product, 'quantity'):
+            qty_request = self.cleaned_data.get('quantity')
+            qty_available = self.product.quantity
+            if qty_request <= 0:
+                raise forms.ValidationError('Quantity must be greater than 0')
+            elif qty_request > qty_available:
+                qty_stock = str(qty_available)
+                raise forms.ValidationError('Only ' + qty_stock + ' in stock')
 
         for item in usercart:
             if self.product == item.product: #Check if item is already in the cart
@@ -81,17 +78,15 @@ class PurchaseForm(FormMixIn, forms.Form):
 
                 #Raise Validation if sum of quantities is greater than amount available.
                 if isinstance(self.product, cmod.BulkProduct):
-                    if item.quantity + self.cleaned_data.get('quantity') > self.product.quantity:
-                        raise forms.ValidationError('Not enough in stock')
+                    if item.quantity + qty_request > qty_available:
+                        qty_cart = str(item.quantity)
+                        qty_remaining = str(qty_available - item.quantity)
+                        raise forms.ValidationError(qty_cart + ' already in cart; ' + qty_remaining + ' remaining to buy' )
                     else: #Else update the forms quantity to sum and remove old cart item
-                        self.cleaned_data['quantity'] = item.quantity + self.cleaned_data.get('quantity')
+                        self.cleaned_data['quantity'] = item.quantity + qty_request
                         item.status= 'removed'
                         item.save()
-
-
-
-
-        self.cleaned_data
+        return self.cleaned_data
 
 
 
