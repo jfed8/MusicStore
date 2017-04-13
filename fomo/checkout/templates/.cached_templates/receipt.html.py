@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491848665.77
+_modified_time = 1492099491.541157
 _enable_loop = True
 _template_filename = '/Users/JessClapier/IntexFOMO/fomo/checkout/templates/receipt.html'
 _template_uri = 'receipt.html'
@@ -31,15 +31,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        payment = context.get('payment', UNDEFINED)
-        sale = context.get('sale', UNDEFINED)
-        saleitems = context.get('saleitems', UNDEFINED)
         def body_center():
             return render_body_center(context._locals(__M_locals))
+        shippingaddress = context.get('shippingaddress', UNDEFINED)
+        sale = context.get('sale', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        saleitems = context.get('saleitems', UNDEFINED)
         def title():
             return render_title(context._locals(__M_locals))
-        shippingaddress = context.get('shippingaddress', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        payment = context.get('payment', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n    more_menu_items\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -72,25 +72,25 @@ def render_title(context,**pageargs):
 def render_body_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        payment = context.get('payment', UNDEFINED)
-        sale = context.get('sale', UNDEFINED)
-        saleitems = context.get('saleitems', UNDEFINED)
         def body_center():
             return render_body_center(context)
         shippingaddress = context.get('shippingaddress', UNDEFINED)
+        sale = context.get('sale', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        saleitems = context.get('saleitems', UNDEFINED)
+        payment = context.get('payment', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n    <script src="https://checkout.stripe.com/checkout.js"></script>\n    <h3> Order Receipt</h3>\n    <p>Thank you for your order! Your order details and receipt are listed below.</p>\n\n    <table class="table table-striped">\n        <caption>Order</caption>\n        <tr>\n            <th>Order ID</th>\n            <th>Date Stamp</th>\n            <th>Subtotal</th>\n            <th>Tax</th>\n            <th>Shipping</th>\n            <th>Total</th>\n        </tr>\n        <tr>\n            <td>')
+        __M_writer('\n    <script src="https://checkout.stripe.com/checkout.js"></script>\n    <h3 style="margin-top:0px;">Order Receipt</h3>\n    <p>Thank you for your order! Your order details and receipt are listed below.</p>\n\n    <table class="table table-striped">\n        <caption>Order</caption>\n        <tr>\n            <th>Order ID</th>\n            <th>Date Stamp</th>\n            <th>Subtotal</th>\n            <th>Tax</th>\n            <th>Shipping</th>\n            <th>Total</th>\n        </tr>\n        <tr>\n            <td>')
         __M_writer(str(sale.id))
         __M_writer('</td>\n            <td>')
-        __M_writer(str(sale.date_stamp))
-        __M_writer('</td>\n            <td>')
+        __M_writer(str(sale.date_stamp.date()))
+        __M_writer('</td>\n            <td>$')
         __M_writer(str(sale.subtotal))
-        __M_writer('</td>\n            <td>')
+        __M_writer('</td>\n            <td>$')
         __M_writer(str(sale.tax))
-        __M_writer('</td>\n            <td>')
+        __M_writer('</td>\n            <td>$')
         __M_writer(str(sale.shipping))
-        __M_writer('</td>\n            <td>')
+        __M_writer('</td>\n            <td>$')
         __M_writer(str(sale.total))
         __M_writer('</td>\n        </tr>\n    </table>\n    <table class="table table-striped">\n        <caption>Order Items</caption>\n        <tr>\n            <th>Image</th>\n            <th>Name</th>\n            <th>Category</th>\n            <th>Quantity</th>\n            <th>Price</th>\n        </tr>\n')
         for item in saleitems:
@@ -104,7 +104,7 @@ def render_body_center(context,**pageargs):
             __M_writer(str(item.product.category.name))
             __M_writer('</td>\n                <td>')
             __M_writer(str(item.quantity))
-            __M_writer('</td>\n                <td>')
+            __M_writer('</td>\n                <td>$')
             __M_writer(str(item.sale_price))
             __M_writer('</td>\n            </tr>\n')
         __M_writer('    </table>\n\n    <table class="table table-striped">\n        <caption>Payment</caption>\n        <tr>\n            <th>Method</th>\n            <th>Card Brand</th>\n            <th>Card Expiration</th>\n            <th>Amount Payed</th>\n            <th>Amount Refunded</th>\n            <th>Currency</th>\n        </tr>\n        <tr>\n            <td>')
@@ -113,13 +113,13 @@ def render_body_center(context,**pageargs):
         __M_writer(str(payment.card_brand))
         __M_writer('</td>\n            <td>')
         __M_writer(str(payment.card_expiration))
-        __M_writer('</td>\n            <td>')
+        __M_writer('</td>\n            <td>$')
         __M_writer(str(payment.amount))
-        __M_writer('</td>\n            <td>')
+        __M_writer('</td>\n            <td>$')
         __M_writer(str(payment.amount_refunded))
         __M_writer('</td>\n            <td>')
         __M_writer(str(payment.currency))
-        __M_writer('</td>\n        </tr>\n    </table>\n\n\n    <div id=\'table_ship_address\'>\n        <table class="table table-striped">\n            <caption>Shipping Address</caption>\n            <tr>\n                <td>Full name: </td>\n                <td>')
+        __M_writer('</td>\n        </tr>\n    </table>\n\n\n    <div id=\'table_ship_address\'>\n        <table class="table table-striped" style="width:50%;">\n            <caption>Shipping Address</caption>\n            <tr>\n                <td>Full name: </td>\n                <td>')
         __M_writer(str(shippingaddress.fullname))
         __M_writer('</td>\n            </tr>\n            <tr>\n                <td>Address:</td>\n                <td>')
         __M_writer(str(shippingaddress.address))

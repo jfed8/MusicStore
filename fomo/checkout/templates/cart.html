@@ -19,9 +19,8 @@ app_base blocks
 </%block>
 
 <%block name="body_center">
-    <h3> Cart Items </h3>
+    <h3 style="margin-top:0px;"> Cart Items |<a style="font-size:15px;" href="/checkout/cart.emptyCart">&nbsp;Empty Cart</a></h3>
     <p> Below is a table of the current items in your cart</p>
-    <a href="/checkout/cart.emptyCart">Empty Cart</a>
     <table class="table table-striped">
         <tr>
             <th>Image</th>
@@ -37,38 +36,52 @@ app_base blocks
                 <td><a href="/catalog/detail/${ item.product.id }">${item.product.name}</a></td>
                 <td>${item.product.category.name}</td>
                 <td>${item.quantity}</td>
-                <td>${item.ext_price}</td>
+                <td>$${item.ext_price}</td>
                 <td><a class='remove_link'  href='/checkout/cart.removeItem/${item.id}'>Remove</a></td>
             </tr>
         % endfor
 
     </table>
     <div id="cart-summary">
-        <table class="table table-striped">
+        <table class="table">
             <tr>
-                <td>Subtotal: </td>
-                <td>${request.user.cartSubtotal()}</td>
+                <th>Subtotal:</th>
+                <th>$${request.user.cartSubtotal()}</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             <tr>
-                <td>Tax:  </td>
-                <td>${request.user.cartTax()}</td>
+                <th>Tax:  </th>
+                <th>$${request.user.cartTax()}</th>
             </tr>
             <tr>
-                <td>Shipping: </td>
-                <td>${request.user.cartShipping()}</td>
+                <th>Shipping: </th>
+                <th>$${request.user.cartShipping()}</th>
             </tr>
             <tr>
-                <td>Total:</td>
-                <td>${request.user.cartTotal()}</td>
+                <th>Total:</th>
+                <th>$${request.user.cartTotal()}</th>
             </tr>
         </table>
 
     </div>
     <div class="text-center">
-        <a href="/checkout/shipping" class="btn btn-default">Checkout</a>
+        <a href="/checkout/shipping" class="btn btn-primary">Checkout</a>
     </div>
     <br>
-    <p>Our customer support and account management teams provide the best service in the industry. We're passionate about our products
-    as well as our customers and it shows in the level of service that we provide. We're always happy to help find the solution for
-    your needs. If a solution doesn't already exist, we'll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>
+
     </%block>

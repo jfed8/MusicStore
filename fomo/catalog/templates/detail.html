@@ -39,7 +39,7 @@ app_base blocks
             <h3 class="detail-h3">Category: ${ product.category }</h3>
             <h3 class="detail-h3">
                 %if hasattr(product, 'quantity') and product.quantity > 0:
-                    <h3 style="color:red;" class="detail-h3">In Stock</h3>
+                    <h3 style="color:red;" class="detail-h3">Available: ${product.quantity}</h3>
                 % endif
             </h3>
             <h3 class="detail-h3" id="purchase_container">${ form }</h3>

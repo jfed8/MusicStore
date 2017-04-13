@@ -1,3 +1,17 @@
+#body-left {
+    padding-right: 0px;
+    margin-top: 10px;
+}
+
+#body-center {
+
+}
+
+#body-right {
+    padding-left: 0px;
+    margin-top: 10px;
+}
+
 /*.body-outer {
     text-align: center;
 }

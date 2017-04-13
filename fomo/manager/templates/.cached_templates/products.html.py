@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491843501.4572449
+_modified_time = 1492096958.9789581
 _enable_loop = True
 _template_filename = '/Users/JessClapier/IntexFOMO/fomo/manager/templates/products.html'
 _template_uri = 'products.html'
@@ -33,13 +33,13 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def title():
-            return render_title(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
         hasattr = context.get('hasattr', UNDEFINED)
         def body_center():
             return render_body_center(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
         products = context.get('products', UNDEFINED)
+        def title():
+            return render_title(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n\n-->\n\n')
@@ -73,13 +73,13 @@ def render_title(context,**pageargs):
 def render_body_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        products = context.get('products', UNDEFINED)
         def body_center():
             return render_body_center(context)
         request = context.get('request', UNDEFINED)
+        products = context.get('products', UNDEFINED)
         hasattr = context.get('hasattr', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n    <h3> Products List </h3>\n    <p> Below is a table of the current inventory</p>\n    <table class="table table-striped">\n        <tr>\n            <th> Category</th>\n            <th>Name</th>\n            <th>Price</th>\n            <th>Quantity</th>\n            <th>Serial Number</th>\n            <th>Barcode</th>\n            <th>Action</th>\n        </tr>\n')
+        __M_writer('\n    <h3> Products List </h3>\n    <p> Below is a table of the current inventory</p>\n    <table class="table table-striped">\n        <tr>\n            <th>Category</th>\n            <th>Name</th>\n            <th>Price</th>\n            <th>Quantity</th>\n            <th>Serial Number</th>\n            <th>Barcode</th>\n            <th>Action</th>\n        </tr>\n')
         for p in products:
             __M_writer('            <tr>\n                <td>')
             __M_writer(str(p.category.name))

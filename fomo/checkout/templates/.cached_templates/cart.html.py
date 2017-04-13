@@ -5,11 +5,13 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491530825.195733
+_modified_time = 1492099028.893079
 _enable_loop = True
-_template_filename = 'C:/Users/klynty/fomo/fomo/checkout/templates/cart.html'
+_template_filename = '/Users/JessClapier/IntexFOMO/fomo/checkout/templates/cart.html'
 _template_uri = 'cart.html'
 _source_encoding = 'utf-8'
+import os, os.path, re, json
+from decimal import Decimal
 import django_mako_plus
 _exports = ['title', 'body_center']
 
@@ -29,24 +31,24 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def title():
-            return render_title(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         request = context.get('request', UNDEFINED)
         def body_center():
             return render_body_center(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def title():
+            return render_title(context._locals(__M_locals))
         __M_writer = context.writer()
-        __M_writer('\r\n<!--\r\nbase blocks\r\n    title\r\n    header\r\n    message\r\n    menu_items\r\n    body_main\r\n    body_above\r\n    body_left\r\n    body_center\r\n    body_right\r\napp_base blocks\r\n    more_menu_items\r\n-->\r\n\r\n')
+        __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n    more_menu_items\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
             context['self'].title(**pageargs)
         
 
-        __M_writer('\r\n\r\n')
+        __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_center'):
             context['self'].body_center(**pageargs)
         
 
-        __M_writer('\r\n')
+        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -58,7 +60,7 @@ def render_title(context,**pageargs):
         def title():
             return render_title(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    Cart\r\n')
+        __M_writer('\n    Cart\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -67,39 +69,39 @@ def render_title(context,**pageargs):
 def render_body_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         request = context.get('request', UNDEFINED)
         def body_center():
             return render_body_center(context)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <h3> Cart Items </h3>\r\n    <p> Below is a table of the current items in your cart</p>\r\n    <a href="/checkout/cart.emptyCart">Empty Cart</a>\r\n    <table class="table table-striped">\r\n        <tr>\r\n            <th>Image</th>\r\n            <th>Name</th>\r\n            <th>Category</th>\r\n            <th>Quantity</th>\r\n            <th>Price</th>\r\n            <th></th>\r\n        </tr>\r\n')
+        __M_writer('\n    <h3 style="margin-top:0px;"> Cart Items |<a style="font-size:15px;" href="/checkout/cart.emptyCart">&nbsp;Empty Cart</a></h3>\n    <p> Below is a table of the current items in your cart</p>\n    <table class="table table-striped">\n        <tr>\n            <th>Image</th>\n            <th>Name</th>\n            <th>Category</th>\n            <th>Quantity</th>\n            <th>Price</th>\n            <th></th>\n        </tr>\n')
         for item in request.user.retrieveCart():
-            __M_writer('            <tr>\r\n                <td><img class=\'graphic\' src="')
+            __M_writer('            <tr>\n                <td><img class=\'graphic\' src="')
             __M_writer(str(STATIC_URL))
             __M_writer('catalog/media/prod_imgs/')
             __M_writer(str(item.product.graphic))
-            __M_writer('" alt=""></td>\r\n                <td><a href="/catalog/detail/')
+            __M_writer('" alt=""></td>\n                <td><a href="/catalog/detail/')
             __M_writer(str( item.product.id ))
             __M_writer('">')
             __M_writer(str(item.product.name))
-            __M_writer('</a></td>\r\n                <td>')
+            __M_writer('</a></td>\n                <td>')
             __M_writer(str(item.product.category.name))
-            __M_writer('</td>\r\n                <td>')
+            __M_writer('</td>\n                <td>')
             __M_writer(str(item.quantity))
-            __M_writer('</td>\r\n                <td>')
+            __M_writer('</td>\n                <td>$')
             __M_writer(str(item.ext_price))
-            __M_writer("</td>\r\n                <td><a class='remove_link'  href='/checkout/cart.removeItem/")
+            __M_writer("</td>\n                <td><a class='remove_link'  href='/checkout/cart.removeItem/")
             __M_writer(str(item.id))
-            __M_writer("'>Remove</a></td>\r\n            </tr>\r\n")
-        __M_writer('\r\n    </table>\r\n    <div id="cart-summary">\r\n        <table class="table table-striped">\r\n            <tr>\r\n                <td>Subtotal: </td>\r\n                <td>')
+            __M_writer("'>Remove</a></td>\n            </tr>\n")
+        __M_writer('\n    </table>\n    <div id="cart-summary">\n        <table class="table">\n            <tr>\n                <th>Subtotal:</th>\n                <th>$')
         __M_writer(str(request.user.cartSubtotal()))
-        __M_writer('</td>\r\n            </tr>\r\n            <tr>\r\n                <td>Tax:  </td>\r\n                <td>')
+        __M_writer('</th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n                <th></th>\n            </tr>\n            <tr>\n                <th>Tax:  </th>\n                <th>$')
         __M_writer(str(request.user.cartTax()))
-        __M_writer('</td>\r\n            </tr>\r\n            <tr>\r\n                <td>Shipping: </td>\r\n                <td>')
+        __M_writer('</th>\n            </tr>\n            <tr>\n                <th>Shipping: </th>\n                <th>$')
         __M_writer(str(request.user.cartShipping()))
-        __M_writer('</td>\r\n            </tr>\r\n            <tr>\r\n                <td>Total:</td>\r\n                <td>')
+        __M_writer('</th>\n            </tr>\n            <tr>\n                <th>Total:</th>\n                <th>$')
         __M_writer(str(request.user.cartTotal()))
-        __M_writer('</td>\r\n            </tr>\r\n        </table>\r\n\r\n    </div>\r\n    <div class="text-center">\r\n        <a href="/checkout/shipping" class="btn btn-default">Checkout</a>\r\n    </div>\r\n    <br>\r\n    <p>Our customer support and account management teams provide the best service in the industry. We\'re passionate about our products\r\n    as well as our customers and it shows in the level of service that we provide. We\'re always happy to help find the solution for\r\n    your needs. If a solution doesn\'t already exist, we\'ll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>\r\n    ')
+        __M_writer('</th>\n            </tr>\n        </table>\n\n    </div>\n    <div class="text-center">\n        <a href="/checkout/shipping" class="btn btn-primary">Checkout</a>\n    </div>\n    <br>\n\n    ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -107,6 +109,6 @@ def render_body_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/klynty/fomo/fomo/checkout/templates/cart.html", "uri": "cart.html", "source_encoding": "utf-8", "line_map": {"28": 0, "39": 1, "44": 19, "49": 74, "55": 17, "61": 17, "67": 21, "75": 21, "76": 34, "77": 35, "78": 36, "79": 36, "80": 36, "81": 36, "82": 37, "83": 37, "84": 37, "85": 37, "86": 38, "87": 38, "88": 39, "89": 39, "90": 40, "91": 40, "92": 41, "93": 41, "94": 44, "95": 50, "96": 50, "97": 54, "98": 54, "99": 58, "100": 58, "101": 62, "102": 62, "108": 102}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/checkout/templates/cart.html", "uri": "cart.html", "source_encoding": "utf-8", "line_map": {"30": 0, "41": 1, "46": 19, "51": 87, "57": 17, "63": 17, "69": 21, "77": 21, "78": 33, "79": 34, "80": 35, "81": 35, "82": 35, "83": 35, "84": 36, "85": 36, "86": 36, "87": 36, "88": 37, "89": 37, "90": 38, "91": 38, "92": 39, "93": 39, "94": 40, "95": 40, "96": 43, "97": 49, "98": 49, "99": 69, "100": 69, "101": 73, "102": 73, "103": 77, "104": 77, "110": 104}}
 __M_END_METADATA
 """

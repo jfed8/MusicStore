@@ -5,11 +5,13 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491539676.2270014
+_modified_time = 1492099089.301955
 _enable_loop = True
-_template_filename = 'C:/Users/klynty/fomo/fomo/checkout/templates/shipping_geo.html'
+_template_filename = '/Users/JessClapier/IntexFOMO/fomo/checkout/templates/shipping_geo.html'
 _template_uri = 'shipping_geo.html'
 _source_encoding = 'utf-8'
+import os, os.path, re, json
+from decimal import Decimal
 import django_mako_plus
 _exports = ['title', 'body_center']
 
@@ -35,17 +37,17 @@ def render_body(context,**pageargs):
         def title():
             return render_title(context._locals(__M_locals))
         __M_writer = context.writer()
-        __M_writer('\r\n<!--\r\nbase blocks\r\n    title\r\n    header\r\n    message\r\n    menu_items\r\n    body_main\r\n    body_above\r\n    body_left\r\n    body_center\r\n    body_right\r\napp_base blocks\r\n    more_menu_items\r\n-->\r\n\r\n')
+        __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n    more_menu_items\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
             context['self'].title(**pageargs)
         
 
-        __M_writer('\r\n\r\n')
+        __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_center'):
             context['self'].body_center(**pageargs)
         
 
-        __M_writer('\r\n')
+        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -57,7 +59,7 @@ def render_title(context,**pageargs):
         def title():
             return render_title(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    Confirm Shipping\r\n')
+        __M_writer('\n    Confirm Shipping\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -70,9 +72,9 @@ def render_body_center(context,**pageargs):
             return render_body_center(context)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <h3>Confirm Shipping Information</h3>\r\n    <p>Google updated your shipping address. Please confirm address or make any edits below.</p>\r\n\r\n    ')
+        __M_writer('\n    <h3 style="margin-top:0px;">Confirm Shipping Information</h3>\n    <p>Google updated your shipping address. Please confirm address or make any edits below.</p>\n\n    ')
         __M_writer(str( form ))
-        __M_writer('\r\n\r\n    <br>\r\n    <p>Our customer support and account management teams provide the best service in the industry. We\'re passionate about our products\r\n    as well as our customers and it shows in the level of service that we provide. We\'re always happy to help find the solution for\r\n    your needs. If a solution doesn\'t already exist, we\'ll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>\r\n    ')
+        __M_writer('\n\n    <br>\n    ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -80,6 +82,6 @@ def render_body_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/klynty/fomo/fomo/checkout/templates/shipping_geo.html", "uri": "shipping_geo.html", "source_encoding": "utf-8", "line_map": {"28": 0, "38": 1, "43": 19, "48": 31, "54": 17, "60": 17, "66": 21, "73": 21, "74": 25, "75": 25, "81": 75}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/checkout/templates/shipping_geo.html", "uri": "shipping_geo.html", "source_encoding": "utf-8", "line_map": {"30": 0, "40": 1, "45": 19, "50": 28, "56": 17, "62": 17, "68": 21, "75": 21, "76": 25, "77": 25, "83": 77}}
 __M_END_METADATA
 """

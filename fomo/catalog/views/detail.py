@@ -63,7 +63,7 @@ class PurchaseForm(FormMixIn, forms.Form):
         qty_available = self.product.quantity
         user = self.request.user
         if qty_request <= 0:
-            raise forms.ValidationError('Quantity must be greater that 0')
+            raise forms.ValidationError('Quantity must be greater than 0')
         elif qty_request > qty_available:
             raise forms.ValidationError('Not enough in stock')
 

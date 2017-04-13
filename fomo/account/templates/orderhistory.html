@@ -17,27 +17,8 @@ app_base blocks
     Order History
 </%block>
 
-<%block name="body_left">
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Actions</h3>
-      </div>
-      <div class="panel-body">
-          <ul class="nav nav-stacked panel">
-              <li><a href="/account/changepassword">Change Password</a></li>
-              <li><a href="/account/changeself">Edit Information</a></li>
-              <li><a href="/account/orderhistory">Order History</a></li>
-          </ul>
-      </div>
-    </div>
-
-
-
-</%block>
-
 <%block name="body_center">
-    <h3> Order Histroy </h3>
+    <h3 style="margin-top:0px;"> Order Histroy </h3>
     <p> Below is a table of your past orders</p>
     <table class="table table-striped">
         <tr>
@@ -52,11 +33,11 @@ app_base blocks
         % for order in orders:
             <tr>
                 <td>${order.id}</td>
-                <td>${order.date_stamp}</td>
-                <td>${order.subtotal}</td>
-                <td>${order.tax}</td>
-                <td>${order.shipping}</td>
-                <td>${order.total}</td>
+                <td>${order.date_stamp.date()}</td>
+                <td>$${order.subtotal}</td>
+                <td>$${order.tax}</td>
+                <td>$${order.shipping}</td>
+                <td>$${order.total}</td>
                 <td><a href="/checkout/receipt/${order.id}">Details</a></td>
             </tr>
 

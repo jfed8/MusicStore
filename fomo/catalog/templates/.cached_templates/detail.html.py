@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491841862.730444
+_modified_time = 1492098054.406819
 _enable_loop = True
 _template_filename = '/Users/JessClapier/IntexFOMO/fomo/catalog/templates/detail.html'
 _template_uri = 'detail.html'
@@ -31,14 +31,14 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        hasattr = context.get('hasattr', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         product = context.get('product', UNDEFINED)
-        def title():
-            return render_title(context._locals(__M_locals))
+        hasattr = context.get('hasattr', UNDEFINED)
         def body_center():
             return render_body_center(context._locals(__M_locals))
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        def title():
+            return render_title(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n    more_menu_items\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -71,12 +71,12 @@ def render_title(context,**pageargs):
 def render_body_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        hasattr = context.get('hasattr', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         product = context.get('product', UNDEFINED)
+        hasattr = context.get('hasattr', UNDEFINED)
         def body_center():
             return render_body_center(context)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n    <div class="tile-image">\n        <a id="detail-modal-button" ><img temp="')
         __M_writer(str( product.id ))
@@ -101,7 +101,9 @@ def render_body_center(context,**pageargs):
         __M_writer(str( product.category ))
         __M_writer('</h3>\n            <h3 class="detail-h3">\n')
         if hasattr(product, 'quantity') and product.quantity > 0:
-            __M_writer('                    <h3 style="color:red;" class="detail-h3">In Stock</h3>\n')
+            __M_writer('                    <h3 style="color:red;" class="detail-h3">Available: ')
+            __M_writer(str(product.quantity))
+            __M_writer('</h3>\n')
         __M_writer('            </h3>\n            <h3 class="detail-h3" id="purchase_container">')
         __M_writer(str( form ))
         __M_writer('</h3>\n\n            <!-- <div id="purchase_container" class="detail-h3">\n')
@@ -115,6 +117,6 @@ def render_body_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/JessClapier/IntexFOMO/fomo/catalog/templates/detail.html", "uri": "detail.html", "source_encoding": "utf-8", "line_map": {"30": 0, "43": 1, "48": 19, "53": 55, "59": 17, "65": 17, "71": 22, "81": 22, "82": 24, "83": 24, "84": 24, "85": 24, "86": 24, "87": 24, "88": 24, "89": 24, "90": 29, "91": 29, "92": 31, "93": 32, "94": 33, "95": 33, "96": 34, "97": 35, "98": 36, "99": 36, "100": 38, "101": 39, "102": 39, "103": 41, "104": 42, "105": 44, "106": 45, "107": 45, "108": 48, "109": 49, "110": 51, "116": 110}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/catalog/templates/detail.html", "uri": "detail.html", "source_encoding": "utf-8", "line_map": {"30": 0, "43": 1, "48": 19, "53": 55, "59": 17, "65": 17, "71": 22, "81": 22, "82": 24, "83": 24, "84": 24, "85": 24, "86": 24, "87": 24, "88": 24, "89": 24, "90": 29, "91": 29, "92": 31, "93": 32, "94": 33, "95": 33, "96": 34, "97": 35, "98": 36, "99": 36, "100": 38, "101": 39, "102": 39, "103": 41, "104": 42, "105": 42, "106": 42, "107": 44, "108": 45, "109": 45, "110": 48, "111": 49, "112": 51, "118": 112}}
 __M_END_METADATA
 """

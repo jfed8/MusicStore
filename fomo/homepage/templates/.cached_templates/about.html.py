@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1492027589.051265
+_modified_time = 1492099843.234731
 _enable_loop = True
 _template_filename = '/Users/JessClapier/IntexFOMO/fomo/homepage/templates/about.html'
 _template_uri = 'about.html'
@@ -31,10 +31,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def title():
-            return render_title(context._locals(__M_locals))
         def body_center():
             return render_body_center(context._locals(__M_locals))
+        def title():
+            return render_title(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n    more_menu_items\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -70,7 +70,7 @@ def render_body_center(context,**pageargs):
         def body_center():
             return render_body_center(context)
         __M_writer = context.writer()
-        __M_writer('\n<div class="jumbotron">\n\n\n    <h1>About: FOMO Rentals</h1>\n\n</div>\n\n<div class="container-fluid">\n<div class="row">\n    <h2>Our Mission:</h2>\n    <p>To become your family\'s favorite music store</p>\n    <h2>Our Story</h2>\n    <p>Visit any FOMO Music Store at any time and you’re guaranteed to see somebody making music. After all, making music is what we\'re all about.\n    Playing the incredible selection of instruments is not only allowed, it’s encouraged. You’ll find people of all ages, from novice to\n    pros playing trumpets, saxaphones, and other instruments. The huge inventory of musical instruments and accessories, sound and recording\n    equipment, sheet music and videos, computers and music software covers every musician’s needs no matter what his or her playing style or ability may be.</p>\n    <p>FOMO is currently a local rental store with locations throughout the state of Utah. Our current size doesn\'t prevent us from having big dreams.\n        We will one day become the world\'s favorite music store.</p>\n    <p>Come in and see us today!</p>\n    <h2>Accessibility</h2>\n    <p>FOMO is committed to providing a website that is accessible to the widest possible audience, regardless of technology or ability.\n        We are actively working to increase the accessibility and usability of our website and in doing so adhere to many of the available\n        standards and guidelines. Our recent improvements include:\n        <ul>\n            <li>Short and simple sentences to aid readability and engage a wider audience on About Us Page.</li>\n            <li>A keyboard alone accessibly homepage.</li>\n            <li>Hierarchical headings and markup on your homepage</li>\n            <li>Visible labels outside of text boxes on “Contact Us” form.</li>\n        </ul>\n    </p>\n</div>\n</div>\n')
+        __M_writer('\n<h1 style="margin-top:0px;">About Us</h1>\n<div class="container-fluid">\n<div class="row">\n    <h3>Our Mission:</h3>\n    <p>To become your family\'s favorite music store</p>\n    <h3>Our Story</h3>\n    <p>Visit any FOMO Music Store at any time and you’re guaranteed to see somebody making music. After all, making music is what we\'re all about.\n    Playing the incredible selection of instruments is not only allowed, it’s encouraged. You’ll find people of all ages, from novice to\n    pros playing trumpets, saxaphones, and other instruments. The huge inventory of musical instruments and accessories, sound and recording\n    equipment, sheet music and videos, computers and music software covers every musician’s needs no matter what his or her playing style or ability may be.</p>\n    <p>FOMO is currently a local rental store with locations throughout the state of Utah. Our current size doesn\'t prevent us from having big dreams.\n        We will one day become the world\'s favorite music store.</p>\n    <p>Come in and see us today!</p>\n</div>\n</div>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -78,6 +78,6 @@ def render_body_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/Users/JessClapier/IntexFOMO/fomo/homepage/templates/about.html", "uri": "about.html", "source_encoding": "utf-8", "line_map": {"30": 0, "39": 1, "44": 19, "49": 55, "55": 17, "61": 17, "67": 22, "73": 22, "79": 73}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/homepage/templates/about.html", "uri": "about.html", "source_encoding": "utf-8", "line_map": {"30": 0, "39": 1, "44": 19, "49": 38, "55": 17, "61": 17, "67": 22, "73": 22, "79": 73}}
 __M_END_METADATA
 """

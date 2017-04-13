@@ -5,13 +5,15 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1488687752.958269
+_modified_time = 1492097222.5743449
 _enable_loop = True
-_template_filename = 'C:/Users/klynty/fomo/fomo/manager/templates/changeuserpassword.html'
+_template_filename = '/Users/JessClapier/IntexFOMO/fomo/manager/templates/changeuserpassword.html'
 _template_uri = 'changeuserpassword.html'
 _source_encoding = 'utf-8'
+import os, os.path, re, json
+from decimal import Decimal
 import django_mako_plus
-_exports = ['title', 'more_breadcrumb', 'body_center']
+_exports = ['title', 'body_center']
 
 
 def _mako_get_namespace(context, name):
@@ -29,30 +31,23 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def more_breadcrumb():
-            return render_more_breadcrumb(context._locals(__M_locals))
-        def title():
-            return render_title(context._locals(__M_locals))
         def body_center():
             return render_body_center(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
+        def title():
+            return render_title(context._locals(__M_locals))
         __M_writer = context.writer()
-        __M_writer('\r\n<!--\r\nbase blocks\r\n    title\r\n    header\r\n    message\r\n    menu_items\r\n    body_main\r\n    body_above\r\n    body_left\r\n    body_center\r\n    body_right\r\napp_base blocks\r\n\r\n-->\r\n\r\n')
+        __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
             context['self'].title(**pageargs)
         
 
-        __M_writer('\r\n\r\n')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'more_breadcrumb'):
-            context['self'].more_breadcrumb(**pageargs)
-        
-
-        __M_writer('\r\n\r\n')
+        __M_writer('\n\n\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'body_center'):
             context['self'].body_center(**pageargs)
         
 
-        __M_writer('\r\n')
+        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -64,19 +59,7 @@ def render_title(context,**pageargs):
         def title():
             return render_title(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    Change Password\r\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
-def render_more_breadcrumb(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def more_breadcrumb():
-            return render_more_breadcrumb(context)
-        __M_writer = context.writer()
-        __M_writer('\r\n    <a class="breadcrumb-item" href="/manager/user/">Users</a> /\r\n    <span class="breadcrumb-item active">Change Password</span>\r\n')
+        __M_writer('\n    Change Password\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -85,13 +68,13 @@ def render_more_breadcrumb(context,**pageargs):
 def render_body_center(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        form = context.get('form', UNDEFINED)
         def body_center():
             return render_body_center(context)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="content">\r\n      <h3 class="text-center">Change Password</h3>\r\n\r\n\r\n\r\n      ')
+        __M_writer('\n    <div class="content">\n      <h3 class="text-center">Change Password</h3>\n\n\n\n      ')
         __M_writer(str( form ))
-        __M_writer('\r\n\r\n      <br/>\r\n      <p>Our customer support and account management teams provide the best service in the industry. We\'re passionate about our products\r\n      as well as our customers and it shows in the level of service that we provide. We\'re always happy to help find the solution for\r\n      your needs. If a solution doesn\'t already exist, we\'ll create a new solution that resolves your issue. <a href="/homepage/contact" >Contact Us!</a></p>\r\n    </div>\r\n')
+        __M_writer('\n\n      <br/>\n      </div>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -99,6 +82,6 @@ def render_body_center(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/klynty/fomo/fomo/manager/templates/changeuserpassword.html", "uri": "changeuserpassword.html", "source_encoding": "utf-8", "line_map": {"28": 0, "40": 1, "45": 19, "50": 24, "55": 39, "61": 17, "67": 17, "73": 21, "79": 21, "85": 26, "92": 26, "93": 32, "94": 32, "100": 94}}
+{"filename": "/Users/JessClapier/IntexFOMO/fomo/manager/templates/changeuserpassword.html", "uri": "changeuserpassword.html", "source_encoding": "utf-8", "line_map": {"30": 0, "40": 1, "45": 19, "50": 33, "56": 17, "62": 17, "68": 23, "75": 23, "76": 29, "77": 29, "83": 77}}
 __M_END_METADATA
 """

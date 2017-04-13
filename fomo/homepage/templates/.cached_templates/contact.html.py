@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1491596259.864005
+_modified_time = 1492099747.512566
 _enable_loop = True
 _template_filename = '/Users/JessClapier/IntexFOMO/fomo/homepage/templates/contact.html'
 _template_uri = 'contact.html'
@@ -33,9 +33,9 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def body_center():
             return render_body_center(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
         def title():
             return render_title(context._locals(__M_locals))
-        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<!--\nbase blocks\n    title\n    header\n    message\n    menu_items\n    body_main\n    body_above\n    body_left\n    body_center\n    body_right\napp_base blocks\n    more_menu_items\n-->\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'title'):
@@ -72,7 +72,7 @@ def render_body_center(context,**pageargs):
             return render_body_center(context)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n    <div class="content">\n      <h3 class="text-center">Have a Question?</h3>\n      <h4 class="text-center">Get in touch!</h4>\n\n\n      ')
+        __M_writer('\n    <div class="content">\n      <h3 class="text-center" style="margin-top:0px;">Have a Question?</h3>\n      <h4 class="text-center">Get in touch!</h4>\n\n\n      ')
         __M_writer(str( form ))
         __M_writer('\n\n      <br/>\n\n    </div>\n')
         return ''
