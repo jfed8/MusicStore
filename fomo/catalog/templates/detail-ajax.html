@@ -17,6 +17,12 @@ app_base blocks
 
 <%block name="body_center">
 
+    % for message in messages:
+        <div id='success-message' class="alert alert-${message.tags}">
+            ${message}
+        </div>
+    % endfor
+
          ${form}
 
 </%block>
