@@ -20,7 +20,7 @@ app_base blocks
 
 <%block name="body_center">
     <script src="https://checkout.stripe.com/checkout.js"></script>
-    <h3> Order Receipt</h3>
+    <h3 style="margin-top:0px;">Order Receipt</h3>
     <p>Thank you for your order! Your order details and receipt are listed below.</p>
 
     <table class="table table-striped">
@@ -35,11 +35,11 @@ app_base blocks
         </tr>
         <tr>
             <td>${sale.id}</td>
-            <td>${sale.date_stamp}</td>
-            <td>${sale.subtotal}</td>
-            <td>${sale.tax}</td>
-            <td>${sale.shipping}</td>
-            <td>${sale.total}</td>
+            <td>${sale.date_stamp.date()}</td>
+            <td>$${sale.subtotal}</td>
+            <td>$${sale.tax}</td>
+            <td>$${sale.shipping}</td>
+            <td>$${sale.total}</td>
         </tr>
     </table>
     <table class="table table-striped">
@@ -57,7 +57,7 @@ app_base blocks
                 <td>${item.product.name}</td>
                 <td>${item.product.category.name}</td>
                 <td>${item.quantity}</td>
-                <td>${item.sale_price}</td>
+                <td>$${item.sale_price}</td>
             </tr>
         % endfor
     </table>
@@ -76,15 +76,15 @@ app_base blocks
             <td>${payment.method}</td>
             <td>${payment.card_brand}</td>
             <td>${payment.card_expiration}</td>
-            <td>${payment.amount}</td>
-            <td>${payment.amount_refunded}</td>
+            <td>$${payment.amount}</td>
+            <td>$${payment.amount_refunded}</td>
             <td>${payment.currency}</td>
         </tr>
     </table>
 
 
     <div id='table_ship_address'>
-        <table class="table table-striped">
+        <table class="table table-striped" style="width:50%;">
             <caption>Shipping Address</caption>
             <tr>
                 <td>Full name: </td>

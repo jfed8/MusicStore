@@ -6,7 +6,7 @@ ul.errorlist {
 
 ul.errorlist > li {
     display: inline-block;
-    background-color: #9b5e21;
+    background-color: red;
     color: #ffffff;
     border-radius: .25em;
     margin: 12px 0 3px 0;

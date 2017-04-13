@@ -43,8 +43,6 @@ class ShippingForm(FormMixIn, forms.Form):
         self.fields['zipcode'] = forms.CharField(label='Zipcode', required=False)
         self.fields['phone'] = forms.CharField(label='Phone', required=False)
 
-
-
     def clean(self):
         return self.cleaned_data
 

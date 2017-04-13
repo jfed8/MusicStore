@@ -18,19 +18,25 @@ app_base blocks
 </%block>
 
 <%block name="body_left">
-    <table class="table table-striped">
-        <tr>
-            <a class="btn btn-default" href="/account/changepassword">Change Password</a>
-        </tr>
-        <tr>
-            <a class="btn btn-default" href="/account/changeself">Edit Information</a>
-        </tr>
-    </table>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Actions</h3>
+      </div>
+      <div class="panel-body">
+          <ul class="nav nav-stacked panel">
+              <li><a href="/account/changepassword">Change Password</a></li>
+              <li><a href="/account/changeself">Edit Information</a></li>
+              <li><a href="/account/orderhistory">Order History</a></li>
+          </ul>
+      </div>
+    </div>
+
 
 </%block>
 
 <%block name="body_center">
-    <h3>My Account</h3>
+    <h3 style="margin-top:0px;">My Account</h3>
     <table class="table table-striped">
         <tr>
             <td>First Name:</td>

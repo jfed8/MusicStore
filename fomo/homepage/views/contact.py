@@ -3,6 +3,7 @@ from django_mako_plus import view_function
 from django import forms
 from django.http import HttpResponseRedirect
 from formlib.form import FormMixIn
+from django.core.mail import send_mail
 
 from .. import dmp_render, dmp_render_to_string
 
@@ -12,7 +13,7 @@ def process_request(request):
     form = ContactForm(request)
     if form.is_valid():
         form.commit()
-        return HttpResponseRedirect('/homepage/contact')
+        return HttpResponseRedirect('/homepage/contact.success/')
 
 
 
@@ -22,6 +23,11 @@ def process_request(request):
         'form':form,
     })
 
+@view_function
+def success(request):
+
+    return dmp_render(request, 'success.html', {
+    })
 
 class ContactForm(FormMixIn, forms.Form):
 
@@ -50,9 +56,17 @@ class ContactForm(FormMixIn, forms.Form):
 
     def commit(self):
         #act on the form here
+        #send email
         from_name = self.cleaned_data.get('name')
         from_email = self.cleaned_data.get('email')
+        subject = self.cleaned_data.get('subject')
         message = self.cleaned_data.get('message')
-        # send_mail()
-        # if self.request.user.is_superuser:
-        #     # Do some logic
+        to_email = 'klynty@thefomomusic.com'
+        if from_email != '':
+            send_mail(
+                    subject,
+                    message,
+                    from_email,
+                    [to_email],
+                    fail_silently=False,
+                )

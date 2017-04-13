@@ -1,3 +1,17 @@
+#body-left {
+    padding-right: 0px;
+    margin-top: 10px;
+}
+
+#body-center {
+
+}
+
+#body-right {
+    padding-left: 0px;
+    margin-top: 10px;
+}
+
 /*.body-outer {
     text-align: center;
 }
@@ -49,6 +63,11 @@
     border-radius: 5px;
     border-color: #dddddd;
     padding: 20px;
+}
+
+.tile-image img:hover {
+    border-color: gray;
+
 }
 
 .tile-title {

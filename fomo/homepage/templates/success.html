@@ -15,19 +15,14 @@ app_base blocks
 -->
 
 <%block name="title">
-    Contact
+    Thank You
 </%block>
 
 
 <%block name="body_center">
     <div class="content">
-      <h3 class="text-center" style="margin-top:0px;">Have a Question?</h3>
-      <h4 class="text-center">Get in touch!</h4>
-
-
-      ${ form }
-
-      <br/>
-
+        <h2 style="margin-top:0px; text-align:center;">Email Received</h2>
+        <p style="text-align:center; font-size:1.5em;">Thank you ${request.user.first_name} for reaching out to us.
+            <br>Our customer support team will be in contact with you shortly.</p>
     </div>
 </%block>

@@ -1,0 +1,47 @@
+<%inherit file="app_base.htm" />
+<!--
+base blocks
+    title
+    header
+    message
+    menu_items
+    body_main
+    body_above
+    body_left
+    body_center
+    body_right
+app_base blocks
+
+-->
+<%block name="title">
+    Order History
+</%block>
+
+<%block name="body_center">
+    <h3 style="margin-top:0px;"> Order Histroy </h3>
+    <p> Below is a table of your past orders</p>
+    <table class="table table-striped">
+        <tr>
+            <th>Order Number</th>
+            <th>Date</th>
+            <th>Subtotal</th>
+            <th>Tax</th>
+            <th>Shipping</th>
+            <th>Total</th>
+            <th>View</th>
+        </tr>
+        % for order in orders:
+            <tr>
+                <td>${order.id}</td>
+                <td>${order.date_stamp.date()}</td>
+                <td>$${order.subtotal}</td>
+                <td>$${order.tax}</td>
+                <td>$${order.shipping}</td>
+                <td>$${order.total}</td>
+                <td><a href="/checkout/receipt/${order.id}">Details</a></td>
+            </tr>
+
+        % endfor
+    </table>
+
+</%block>
