@@ -47,7 +47,7 @@ def modal(request):
 
 class LoginForm(FormMixIn, forms.Form):
     '''The Login form'''
-
+    form_submit = 'Login'
     def init(self):
         '''Initializes the form fields.'''
         #fields
@@ -65,12 +65,12 @@ class LoginForm(FormMixIn, forms.Form):
             if not conn.bind():
                 raise forms.ValidationError('Invalid username or password.')
             if conn.bind():
-                
+
                 conn.search(search_base = 'cn=Users,dc=thefomomusic,dc=local',
                          search_filter = '(&(objectClass=Person)(userPrincipalName='+conn.user+'))',
                          search_scope = SUBTREE,
                          attributes = ['givenName', 'sn', 'userPrincipalName'])
-                
+
                 #raise forms.ValidationError('Welcome AD User - ' + str(conn.response[0]['attributes']['sn']))
                 ad_user = amod.FOMOUser()
                 ad_user.first_name = conn.response[0]['attributes']['givenName']
