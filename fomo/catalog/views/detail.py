@@ -74,14 +74,10 @@ class PurchaseForm(FormMixIn, forms.Form):
 
                 #Raise Validation Error if UniqueProduct or Rental Product is already in the cart
                 if isinstance(self.product, cmod.UniqueProduct) or isinstance(self.product, cmod.RentalProduct):
-                    print('>>>>>>>>>>>>>>>>>>>>>>>>validation3')
                     raise forms.ValidationError('Item already in cart')
 
                 #Raise Validation if sum of quantities is greater than amount available.
                 if isinstance(self.product, cmod.BulkProduct):
-                    print('>>>>>>>>>>>>>>>>>>>>>item.quant', item.quantity)
-                    print('>>>>>>>>>>>>>>>>>>>>>qty_request', qty_request)
-                    print('>>>>>>>>>>>>>>>>>>>>>qty_available', qty_available)
                     if item.quantity + qty_request > qty_available:
                         qty_cart = str(item.quantity)
                         qty_remaining = str(qty_available - item.quantity)
