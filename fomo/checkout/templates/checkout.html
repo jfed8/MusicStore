@@ -37,7 +37,7 @@ app_base blocks
                 <td><img class='graphic' src="${STATIC_URL}catalog/media/prod_imgs/${item.product.graphic}" alt=""></td>
                 <td>${item.product.name}</td>
                 <td>${item.product.category.name}</td>
-                <td>$${item.quantity}</td>
+                <td>${item.quantity}</td>
                 <td>$${item.ext_price}</td>
             </tr>
         % endfor
