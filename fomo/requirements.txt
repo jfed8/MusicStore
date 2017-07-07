@@ -1,0 +1,6 @@
+django_mako_plus==4.1.10
+Django==1.10.5
+requests==2.12.4
+django_polymorphic
+psycopg2
+ldap3

@@ -1,0 +1,7 @@
+{
+  "name": "The Bot Online",
+  "description": "Excellent Heroku app to host The Bot",
+  "repository": "https://github.com/XLR8-Development/TheBotOnline.git",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
